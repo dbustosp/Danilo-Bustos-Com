@@ -1,0 +1,87 @@
+---
+/**
+ * Cabecera: nombre propio a la izquierda, navegación austera a la derecha.
+ * Sin logotipo ni eslogan: el nombre es la marca.
+ */
+import { SITE } from '../config/site';
+import ThemeToggle from './ThemeToggle.astro';
+
+const path = Astro.url.pathname;
+const isCurrent = (href: string) => path === href || path.startsWith(`${href}/`);
+---
+
+<header class="site-header container">
+  <a href="/" class="brand link-quiet" aria-current={path === '/' ? 'page' : undefined}>{SITE.name}</a>
+  <nav aria-label="Principal">
+    <ul>
+      {
+        SITE.nav.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class="link-quiet"
+              aria-current={isCurrent(item.href) ? 'page' : undefined}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <ThemeToggle />
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding-block: var(--space-3);
+  }
+
+  .brand {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  ul {
+    display: flex;
+    gap: var(--space-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  nav a {
+    font-size: 0.9375rem;
+    color: var(--muted);
+  }
+
+  nav a:hover,
+  nav a[aria-current='page'] {
+    color: var(--text);
+  }
+
+  @media (max-width: 40rem) {
+    .site-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-2);
+    }
+
+    nav {
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+</style>
