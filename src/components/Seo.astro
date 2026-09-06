@@ -1,0 +1,84 @@
+---
+/**
+ * Metadatos de cada página: título y descripción propios (nunca heredados),
+ * canonical, Open Graph con imagen, Twitter card y JSON-LD.
+ *
+ * Esto es lo que hace que un enlace se vea bien al pegarlo en LinkedIn, y
+ * eso sí mueve clics de verdad.
+ */
+import { SITE } from '../config/site';
+import { isoDate } from '../lib/dates';
+
+export interface ArticleMeta {
+  published: Date;
+  modified?: Date;
+  section: string;
+  lang: string;
+}
+
+interface Props {
+  /** Título para redes y buscadores, sin el sufijo del sitio. */
+  title: string;
+  description: string;
+  canonical: URL;
+  /** Ruta o URL de la imagen de vista previa (1200×630). */
+  image?: string;
+  imageAlt?: string;
+  type?: 'website' | 'article';
+  article?: ArticleMeta;
+  noindex?: boolean;
+  jsonLd?: Record<string, unknown>[];
+}
+
+const {
+  title,
+  description,
+  canonical,
+  image,
+  imageAlt,
+  type = 'website',
+  article,
+  noindex = false,
+  jsonLd = [],
+} = Astro.props;
+
+const imageUrl = image ? new URL(image, Astro.site) : undefined;
+---
+
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex" />}
+
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content={SITE.name} />
+<meta property="og:locale" content={SITE.locale} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+{
+  imageUrl && (
+    <>
+      <meta property="og:image" content={imageUrl} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content={imageAlt ?? title} />
+    </>
+  )
+}
+{
+  article && (
+    <>
+      <meta property="article:published_time" content={isoDate(article.published)} />
+      {article.modified && <meta property="article:modified_time" content={isoDate(article.modified)} />}
+      <meta property="article:section" content={article.section} />
+      <meta property="article:author" content={SITE.url} />
+    </>
+  )
+}
+
+<meta name="twitter:card" content={imageUrl ? 'summary_large_image' : 'summary'} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+{imageUrl && <meta name="twitter:image" content={imageUrl} />}
+
+{jsonLd.map((data) => <script type="application/ld+json" set:html={JSON.stringify(data)} />)}

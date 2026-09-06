@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig, fontProviders } from 'astro/config';
 import mdx from '@astrojs/mdx';
+import sitemap from '@astrojs/sitemap';
 
 /**
  * Archivos de una fuente variable de Fontsource (@fontsource-variable/<pkg>).
@@ -32,8 +33,12 @@ export default defineConfig({
   // Sitio 100 % estático: cada push a producción genera HTML plano.
   output: 'static',
 
-  // Markdown para casi todo; MDX cuando un ensayo necesite un componente.
-  integrations: [mdx()],
+  integrations: [
+    // Markdown para casi todo; MDX cuando un ensayo necesite un componente.
+    mdx(),
+    // Sitemap en /sitemap-index.xml; las páginas de trabajo (/lab) quedan fuera.
+    sitemap({ filter: (page) => !page.includes('/lab') }),
+  ],
 
   markdown: {
     shikiConfig: {
