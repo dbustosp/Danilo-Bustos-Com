@@ -9,9 +9,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-# environment variables
-.env
-.env.production
+# environment variables (incluye el .env.local que crea la CLI de Vercel)
+.env*
 # vercel
 .vercel/
 # macOS-specific files
