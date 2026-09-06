@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig, fontProviders } from 'astro/config';
+import mdx from '@astrojs/mdx';
 
 /**
  * Archivos de una fuente variable de Fontsource (@fontsource-variable/<pkg>).
@@ -30,6 +31,17 @@ export default defineConfig({
 
   // Sitio 100 % estático: cada push a producción genera HTML plano.
   output: 'static',
+
+  // Markdown para casi todo; MDX cuando un ensayo necesite un componente.
+  integrations: [mdx()],
+
+  markdown: {
+    shikiConfig: {
+      // Tema dual: el CSS global elige el color según el modo claro/oscuro.
+      themes: { light: 'vitesse-light', dark: 'vitesse-dark' },
+      defaultColor: false,
+    },
+  },
 
   /**
    * Tipografía.
