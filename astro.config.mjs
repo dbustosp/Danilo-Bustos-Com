@@ -40,6 +40,12 @@ export default defineConfig({
     sitemap({ filter: (page) => !page.includes('/lab') }),
   ],
 
+  vite: {
+    // Mermaid se carga bajo demanda; pre-empaquetarlo evita el 504 de Vite
+    // la primera vez que se abre una página con diagrama en desarrollo.
+    optimizeDeps: { include: ['mermaid'] },
+  },
+
   markdown: {
     shikiConfig: {
       // Tema dual: el CSS global elige el color según el modo claro/oscuro.

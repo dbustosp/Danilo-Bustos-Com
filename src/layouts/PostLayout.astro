@@ -4,6 +4,7 @@
  * lectura, y al pie las notas de contexto (actualización, origen).
  */
 import BaseLayout from './BaseLayout.astro';
+import Mermaid from '../components/Mermaid.astro';
 import { CATEGORIES, categoryUrl } from '../lib/categories';
 import { formatDate, isoDate } from '../lib/dates';
 import type { Post } from '../lib/posts';
@@ -58,6 +59,7 @@ const t =
     <div class="prose">
       <slot />
     </div>
+    <Mermaid />
 
     <footer class="post-footer small muted">
       {
