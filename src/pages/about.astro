@@ -1,0 +1,51 @@
+---
+import { getEntry, render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../config/site';
+
+const entry = await getEntry('pages', 'about');
+if (!entry) throw new Error('Falta src/content/pages/about.md');
+const { Content } = await render(entry);
+---
+
+<BaseLayout title={entry.data.title} description={entry.data.description}>
+  <header class="page-header">
+    <h1>{entry.data.title}</h1>
+  </header>
+
+  <div class="prose">
+    <Content />
+  </div>
+
+  <section class="contact" aria-labelledby="contacto">
+    <h2 id="contacto" class="section-label">Contacto</h2>
+    <p>
+      {
+        SITE.email ? (
+          <>
+            Escríbeme a <a href={`mailto:${SITE.email}`}>{SITE.email}</a> o por{' '}
+            <a href={SITE.social.linkedin}>LinkedIn</a>.
+          </>
+        ) : (
+          <>
+            La mejor forma de escribirme es por <a href={SITE.social.linkedin}>LinkedIn</a>.
+          </>
+        )
+      }
+      {' '}El código que publico está en <a href={SITE.social.github}>GitHub</a>.
+    </p>
+    <p class="small muted">
+      El <a href="/cv">currículum</a> está en una página aparte.
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact {
+    margin-top: var(--space-5);
+  }
+
+  .contact p + p {
+    margin-top: var(--space-2);
+  }
+</style>

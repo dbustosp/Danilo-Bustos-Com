@@ -32,12 +32,24 @@ export const SITE = {
   /** Repositorio público del sitio. Se enlaza desde el pie. */
   repo: 'https://github.com/dbustosp/Danilo-Bustos-Com',
 
-  /** Enlaces del pie. Solo los canales profesionales; Instagram y Facebook no van. */
+  /**
+   * Enlaces del pie. Solo los canales profesionales; Instagram y Facebook no van.
+   * Un enlace vacío no se muestra: X queda oculto hasta confirmar el usuario.
+   */
   social: {
-    linkedin: 'https://www.linkedin.com/in/dbustosp',
+    linkedin: 'https://www.linkedin.com/in/danilo-bustos/',
     github: 'https://github.com/dbustosp',
-    twitter: 'https://x.com/dbustosp',
+    twitter: '',
   },
+
+  /**
+   * Correo en dominio propio. Pospuesto: el sitio se lanza sin él y el
+   * contacto es LinkedIn. Cuando exista, basta con rellenarlo aquí.
+   */
+  email: '',
+
+  /** Dirección de copy de la sección "Ahora" en la home. */
+  now: 'Construyo los sistemas que hacen que la inteligencia artificial funcione dentro de una empresa real.',
 
   /** Navegación principal. El CV vive en /cv pero no se destaca aquí. */
   nav: [
