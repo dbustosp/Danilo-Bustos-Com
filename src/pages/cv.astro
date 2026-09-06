@@ -10,7 +10,7 @@ const { Content } = await render(entry);
 const { title, description, updated } = entry.data;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} image="/og/cv.png">
   <header class="page-header">
     <h1>{SITE.name}</h1>
     <p>{title}</p>

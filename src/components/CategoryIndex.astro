@@ -19,7 +19,7 @@ const meta = CATEGORIES[category];
 const posts = await getPostsByCategory(category);
 ---
 
-<BaseLayout title={meta.label} description={meta.description}>
+<BaseLayout title={meta.label} description={meta.description} image="/og/writing.png">
   <header class="page-header">
     <h1>{meta.label}</h1>
     <p>{meta.description}</p>

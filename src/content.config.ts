@@ -22,6 +22,7 @@ const RESERVED_SLUGS = new Set([
   ...CATEGORY_IDS,
   'about',
   'cv',
+  'default', // imagen Open Graph por defecto (/og/default.png)
   'index',
   'lab',
   'now',
