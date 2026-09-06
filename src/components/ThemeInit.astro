@@ -1,0 +1,20 @@
+---
+/**
+ * Aplica la preferencia guardada de modo claro/oscuro antes del primer
+ * render. Va inline en <head> para que no haya parpadeo: si la persona
+ * eligió un modo distinto al del sistema, el HTML ya nace con él.
+ */
+---
+
+<script is:inline>
+  (function () {
+    try {
+      var theme = localStorage.getItem('theme');
+      if (theme === 'dark' || theme === 'light') {
+        document.documentElement.dataset.theme = theme;
+      }
+    } catch (e) {
+      /* almacenamiento no disponible */
+    }
+  })();
+</script>
