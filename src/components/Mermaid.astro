@@ -1,0 +1,73 @@
+---
+/**
+ * Diagramas como texto: un bloque ```mermaid en Markdown o MDX se convierte
+ * en SVG en el navegador, con los colores del sitio en modo claro y oscuro.
+ *
+ * Progresivo: sin JavaScript queda el código resaltado por Shiki. La
+ * librería (pesada) solo se descarga en las páginas que tienen diagramas.
+ * No hay plugin de remark: Shiki ya marca el bloque con data-language.
+ */
+---
+
+<script>
+  const root = document.documentElement;
+  const blocks = Array.from(document.querySelectorAll<HTMLPreElement>('pre[data-language="mermaid"]'));
+
+  if (blocks.length > 0) {
+    const { default: mermaid } = await import('mermaid');
+
+    const diagrams = blocks.map((pre, index) => {
+      const holder = document.createElement('figure');
+      holder.className = 'diagram';
+      holder.setAttribute('role', 'img');
+      pre.replaceWith(holder);
+      return { source: pre.textContent ?? '', holder, pre, index };
+    });
+
+    const cssVar = (name: string) => getComputedStyle(root).getPropertyValue(name).trim();
+
+    async function render() {
+      mermaid.initialize({
+        startOnLoad: false,
+        theme: 'base',
+        fontFamily: getComputedStyle(document.body).fontFamily,
+        themeVariables: {
+          background: cssVar('--bg'),
+          primaryColor: cssVar('--surface'),
+          primaryTextColor: cssVar('--text'),
+          primaryBorderColor: cssVar('--muted'),
+          secondaryColor: cssVar('--surface'),
+          secondaryTextColor: cssVar('--text'),
+          secondaryBorderColor: cssVar('--muted'),
+          tertiaryColor: cssVar('--bg'),
+          tertiaryTextColor: cssVar('--text'),
+          tertiaryBorderColor: cssVar('--rule'),
+          lineColor: cssVar('--muted'),
+          textColor: cssVar('--text'),
+          noteBkgColor: cssVar('--surface'),
+          noteTextColor: cssVar('--text'),
+          noteBorderColor: cssVar('--rule'),
+          fontSize: '16px',
+        },
+      });
+
+      for (const diagram of diagrams) {
+        try {
+          const { svg } = await mermaid.render(`diagram-${diagram.index}-${Date.now()}`, diagram.source);
+          diagram.holder.innerHTML = svg;
+        } catch {
+          // Si el diagrama no compila, se deja el código a la vista.
+          diagram.holder.replaceWith(diagram.pre);
+        }
+      }
+    }
+
+    await render();
+
+    // Volver a pintar al cambiar de modo, sea por el conmutador o por el sistema.
+    new MutationObserver(render).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+      if (!root.dataset.theme) render();
+    });
+  }
+</script>

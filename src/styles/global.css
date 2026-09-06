@@ -381,6 +381,18 @@ p {
   }
 }
 
+/* Diagramas (Mermaid): centrados, a lo ancho de la columna, sin marco. */
+.prose .diagram {
+  margin: var(--space-4) 0;
+  display: flex;
+  justify-content: center;
+}
+
+.prose .diagram svg {
+  max-width: 100%;
+  height: auto;
+}
+
 /* Tablas: filetes horizontales finos, nada más. */
 .prose table {
   width: 100%;
