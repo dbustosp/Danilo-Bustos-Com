@@ -5,6 +5,7 @@ portafolio: ensayos sobre recuperación de información, inteligencia
 artificial y sistemas distribuidos, en tres categorías (Ingeniería,
 Enterprise y Notas).
 
+- **En vivo:** <https://danilobustos-com.vercel.app> — pasa a `danilobustos.com` cuando se conecte el dominio.
 - **Stack:** [Astro](https://astro.build) estático, Markdown/MDX, desplegado en Vercel.
 - **Rutas:** `/` · `/writing` · `/writing/[slug]` · `/writing/[categoria]` · `/now` · `/about` · `/cv` · `/rss.xml`
 - **Diseño:** editorial y tipográfico, modo claro y oscuro, sin cajas ni sombras.
@@ -43,7 +44,12 @@ sitio. No se enlazan, llevan `noindex` y se borran cuando haya decisión.
 
 ## Despliegue
 
-Proyecto de Vercel conectado a este repositorio: cada push a la rama de
-producción despliega solo y cada rama tiene su vista previa. `vercel.json`
-fija el framework y las URLs sin barra final. La analítica es Vercel
-Analytics (sin cookies, sin banner).
+Proyecto de Vercel (`danilobustos-com`) conectado a este repositorio: cada
+push a `main` despliega solo y cada rama tiene su vista previa.
+`vercel.json` fija el framework y las URLs sin barra final; sin ese archivo
+el proyecto no sabría que es un sitio Astro, porque el preset del panel
+está en blanco. La analítica es Vercel Analytics (sin cookies, sin banner).
+
+El canonical y las imágenes Open Graph apuntan a `https://danilobustos.com`
+(ver `site` en `astro.config.mjs`), así que las vistas previas de enlaces
+no se verán bien hasta que el dominio exista.
