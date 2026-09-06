@@ -1,0 +1,73 @@
+---
+/**
+ * Lista cronológica: solo fecha y título. Sin imágenes, sin tarjetas, sin
+ * resúmenes. El título tiene que hacer todo el trabajo.
+ */
+import type { Post } from '../lib/posts';
+import { postUrl } from '../lib/posts';
+import { formatMonthYear, isoDate } from '../lib/dates';
+
+interface Props {
+  posts: Post[];
+}
+
+const { posts } = Astro.props;
+---
+
+<ol class="post-list">
+  {
+    posts.map((post) => (
+      <li>
+        <time datetime={isoDate(post.data.date)} class="muted small">
+          {formatMonthYear(post.data.date)}
+        </time>
+        <span>
+          <a href={postUrl(post)} class="link-quiet" lang={post.data.lang}>
+            {post.data.title}
+          </a>
+          {post.data.draft && <span class="draft small muted">borrador</span>}
+        </span>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .post-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    display: grid;
+    grid-template-columns: 5.5rem 1fr;
+    gap: var(--space-2);
+    align-items: baseline;
+    padding-block: 0.55rem;
+  }
+
+  time {
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  a {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+
+  .draft {
+    margin-left: 0.5em;
+    font-style: italic;
+  }
+
+  @media (max-width: 40rem) {
+    li {
+      grid-template-columns: 1fr;
+      gap: 0.1rem;
+    }
+  }
+</style>

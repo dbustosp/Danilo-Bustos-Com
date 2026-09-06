@@ -1,0 +1,70 @@
+---
+/**
+ * Los ensayos definitorios. Es lo primero que ve un visitante nuevo, así que
+ * aquí sí va la descripción: título, una o dos frases, categoría y fecha.
+ */
+import type { Post } from '../lib/posts';
+import { postUrl } from '../lib/posts';
+import { CATEGORIES, categoryUrl } from '../lib/categories';
+import { formatMonthYear, isoDate } from '../lib/dates';
+
+interface Props {
+  posts: Post[];
+}
+
+const { posts } = Astro.props;
+---
+
+<ul class="featured">
+  {
+    posts.map((post) => (
+      <li>
+        <h3>
+          <a href={postUrl(post)} class="link-quiet" lang={post.data.lang}>
+            {post.data.title}
+          </a>
+        </h3>
+        <p class="description" lang={post.data.lang}>
+          {post.data.description}
+        </p>
+        <p class="meta small muted">
+          <a href={categoryUrl(post.data.category)} class="link-quiet">
+            {CATEGORIES[post.data.category].label}
+          </a>
+          {' · '}
+          <time datetime={isoDate(post.data.date)}>{formatMonthYear(post.data.date)}</time>
+          {post.data.draft && <span class="draft"> · borrador</span>}
+        </p>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .featured {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li + li {
+    margin-top: var(--space-4);
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  .description {
+    margin-top: 0.5rem;
+    max-width: 36em;
+  }
+
+  .meta {
+    margin-top: 0.5rem;
+  }
+
+  .draft {
+    font-style: italic;
+  }
+</style>

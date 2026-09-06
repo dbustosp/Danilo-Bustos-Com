@@ -1,0 +1,97 @@
+---
+/**
+ * Página de un ensayo: categoría y fecha, título, cuerpo en la columna de
+ * lectura, y al pie las notas de contexto (actualización, origen).
+ */
+import BaseLayout from './BaseLayout.astro';
+import { CATEGORIES, categoryUrl } from '../lib/categories';
+import { formatDate, isoDate } from '../lib/dates';
+import type { Post } from '../lib/posts';
+
+interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props;
+const { title, description, date, updated, category, lang, origin, draft } = post.data;
+
+/* Microcopia alrededor del ensayo, en el idioma del ensayo. */
+const t =
+  lang === 'en'
+    ? {
+        updated: 'Updated on',
+        origin: 'A shorter version was first published on',
+        back: 'All writing',
+        draft: 'Draft',
+      }
+    : {
+        updated: 'Actualizado el',
+        origin: 'Una versión más breve se publicó primero en',
+        back: 'Todos los escritos',
+        draft: 'Borrador',
+      };
+---
+
+<BaseLayout title={title} description={description}>
+  <article class="post" lang={lang}>
+    <header class="post-header">
+      <p class="meta small muted">
+        <a href={categoryUrl(category)} class="link-quiet">{CATEGORIES[category].label}</a>
+        {' · '}
+        <time datetime={isoDate(date)}>{formatDate(date, lang)}</time>
+        {draft && <span class="draft"> · {t.draft}</span>}
+      </p>
+      <h1>{title}</h1>
+    </header>
+
+    <div class="prose">
+      <slot />
+    </div>
+
+    <footer class="post-footer small muted">
+      {
+        updated && (
+          <p>
+            {t.updated} <time datetime={isoDate(updated)}>{formatDate(updated, lang)}</time>.
+          </p>
+        )
+      }
+      {
+        origin && (
+          <p>
+            {t.origin} <a href={origin.url}>{origin.label}</a>.
+          </p>
+        )
+      }
+      <p><a href="/writing" class="link-quiet">← {t.back}</a></p>
+    </footer>
+  </article>
+</BaseLayout>
+
+<style>
+  .post-header {
+    margin-bottom: var(--space-4);
+  }
+
+  .post-header h1 {
+    margin-top: var(--space-1);
+    font-size: 2.5rem;
+  }
+
+  @media (max-width: 40rem) {
+    .post-header h1 {
+      font-size: 2rem;
+    }
+  }
+
+  .draft {
+    font-style: italic;
+  }
+
+  .post-footer {
+    margin-top: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+</style>
