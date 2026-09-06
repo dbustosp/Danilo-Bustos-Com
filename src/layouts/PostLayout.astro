@@ -16,6 +16,7 @@ interface Props {
 const { post } = Astro.props;
 const { title, description, date, updated, category, lang, origin, draft } = post.data;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const image = `/og/${post.id}.png`;
 const article = { published: date, modified: updated, section: CATEGORIES[category].label, lang };
 
 /* Microcopia alrededor del ensayo, en el idioma del ensayo. */
@@ -40,7 +41,8 @@ const t =
   description={description}
   type="article"
   {article}
-  jsonLd={[articleJsonLd(post, canonical)]}
+  {image}
+  jsonLd={[articleJsonLd(post, canonical, new URL(image, Astro.site))]}
 >
   <article class="post" lang={lang}>
     <header class="post-header">
