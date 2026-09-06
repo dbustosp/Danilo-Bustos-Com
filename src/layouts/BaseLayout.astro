@@ -17,20 +17,18 @@ interface Props {
   title: string;
   /** Descripción propia de la página. Nunca heredada por defecto. */
   description: string;
-  /** Idioma del contenido principal, si difiere del de la interfaz. */
-  lang?: string;
   /** Excluye la página de los buscadores (páginas de trabajo, como /lab). */
   noindex?: boolean;
 }
 
-const { title, description, lang = SITE.lang, noindex = false } = Astro.props;
+const { title, description, noindex = false } = Astro.props;
 const isHome = Astro.url.pathname === '/';
 const pageTitle = isHome ? title : `${title} · ${SITE.name}`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang={SITE.lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />

@@ -1,0 +1,29 @@
+---
+/**
+ * Índice de una categoría: título, descripción y lista cronológica.
+ * Las tres páginas de categoría (src/pages/writing/<categoria>.astro) son
+ * envoltorios de una línea sobre este componente.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { CATEGORIES, type CategoryId } from '../lib/categories';
+import { getPostsByCategory } from '../lib/posts';
+import CategoryNav from './CategoryNav.astro';
+import PostList from './PostList.astro';
+
+interface Props {
+  category: CategoryId;
+}
+
+const { category } = Astro.props;
+const meta = CATEGORIES[category];
+const posts = await getPostsByCategory(category);
+---
+
+<BaseLayout title={meta.label} description={meta.description}>
+  <header class="page-header">
+    <h1>{meta.label}</h1>
+    <p>{meta.description}</p>
+  </header>
+  <CategoryNav current={category} />
+  {posts.length > 0 ? <PostList posts={posts} /> : <p class="muted">Todavía no hay ensayos en esta categoría.</p>}
+</BaseLayout>

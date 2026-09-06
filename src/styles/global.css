@@ -232,6 +232,27 @@ p {
   border: 0;
 }
 
+/* Cabecera de página: título y, opcionalmente, una línea en gris. */
+.page-header {
+  margin-bottom: var(--space-4);
+}
+
+.page-header p {
+  margin-top: var(--space-1);
+  color: var(--muted);
+}
+
+/* Etiqueta de sección: sans, pequeña, en versalitas. Jerarquía sin cajas. */
+.section-label {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: var(--space-2);
+}
+
 /* Enlace discreto: hereda el color del texto y solo se subraya al pasar. */
 .link-quiet {
   color: inherit;

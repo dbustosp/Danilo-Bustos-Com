@@ -1,0 +1,57 @@
+---
+/**
+ * Índice del blog. Doble nivel: los destacados arriba (sin importar su
+ * fecha) y, debajo, todo lo demás en orden cronológico.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CategoryNav from '../../components/CategoryNav.astro';
+import FeaturedList from '../../components/FeaturedList.astro';
+import PostList from '../../components/PostList.astro';
+import { getFeaturedPosts, getPosts } from '../../lib/posts';
+
+const featured = await getFeaturedPosts();
+const featuredIds = new Set(featured.map((post) => post.id));
+const rest = (await getPosts()).filter((post) => !featuredIds.has(post.id));
+const isEmpty = featured.length === 0 && rest.length === 0;
+---
+
+<BaseLayout
+  title="Escritos"
+  description="Ensayos sobre ingeniería, adopción de inteligencia artificial en el enterprise y notas personales."
+>
+  <header class="page-header">
+    <h1>Escritos</h1>
+  </header>
+
+  <CategoryNav />
+
+  {
+    featured.length > 0 && (
+      <section aria-labelledby="destacados">
+        <h2 id="destacados" class="section-label">
+          Destacados
+        </h2>
+        <FeaturedList posts={featured} />
+      </section>
+    )
+  }
+
+  {
+    rest.length > 0 && (
+      <section aria-labelledby="por-fecha">
+        <h2 id="por-fecha" class="section-label">
+          Por fecha
+        </h2>
+        <PostList posts={rest} />
+      </section>
+    )
+  }
+
+  {isEmpty && <p class="muted">Todavía no hay ensayos publicados.</p>}
+</BaseLayout>
+
+<style>
+  section + section {
+    margin-top: var(--space-5);
+  }
+</style>
