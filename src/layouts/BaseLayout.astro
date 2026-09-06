@@ -3,12 +3,14 @@
  * Esqueleto de todas las páginas: <head>, cabecera, columna de lectura y pie.
  *
  * Las páginas solo aportan título, descripción y contenido. Todo lo que es
- * común (fuentes, tema, navegación, enlaces del pie) vive aquí una sola vez.
+ * común (fuentes, tema, metadatos, navegación, enlaces del pie) vive aquí
+ * una sola vez.
  */
 import { Font } from 'astro:assets';
 import { SITE } from '../config/site';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Seo, { type ArticleMeta } from '../components/Seo.astro';
 import ThemeInit from '../components/ThemeInit.astro';
 import '../styles/global.css';
 
@@ -17,11 +19,19 @@ interface Props {
   title: string;
   /** Descripción propia de la página. Nunca heredada por defecto. */
   description: string;
+  /** Imagen de vista previa para redes (1200×630). */
+  image?: string;
+  imageAlt?: string;
+  /** Tipo Open Graph; los ensayos son "article". */
+  type?: 'website' | 'article';
+  article?: ArticleMeta;
+  /** Datos estructurados de la página. */
+  jsonLd?: Record<string, unknown>[];
   /** Excluye la página de los buscadores (páginas de trabajo, como /lab). */
   noindex?: boolean;
 }
 
-const { title, description, noindex = false } = Astro.props;
+const { title, description, image, imageAlt, type, article, jsonLd, noindex = false } = Astro.props;
 const isHome = Astro.url.pathname === '/';
 const pageTitle = isHome ? title : `${title} · ${SITE.name}`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
@@ -33,12 +43,11 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{pageTitle}</title>
-    <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
+    <Seo {title} {description} {canonical} {image} {imageAlt} {type} {article} {jsonLd} {noindex} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="alternate" type="application/rss+xml" title={`${SITE.name} — RSS`} href="/rss.xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="generator" content={Astro.generator} />
-    {noindex && <meta name="robots" content="noindex" />}
     <ThemeInit />
     <Font cssVariable="--font-newsreader" preload={[{ style: 'normal' }]} />
     <Font cssVariable="--font-inter" preload={[{ style: 'normal' }]} />

@@ -7,6 +7,7 @@ import BaseLayout from './BaseLayout.astro';
 import { CATEGORIES, categoryUrl } from '../lib/categories';
 import { formatDate, isoDate } from '../lib/dates';
 import type { Post } from '../lib/posts';
+import { articleJsonLd } from '../lib/jsonld';
 
 interface Props {
   post: Post;
@@ -14,6 +15,8 @@ interface Props {
 
 const { post } = Astro.props;
 const { title, description, date, updated, category, lang, origin, draft } = post.data;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const article = { published: date, modified: updated, section: CATEGORIES[category].label, lang };
 
 /* Microcopia alrededor del ensayo, en el idioma del ensayo. */
 const t =
@@ -32,7 +35,13 @@ const t =
       };
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout
+  title={title}
+  description={description}
+  type="article"
+  {article}
+  jsonLd={[articleJsonLd(post, canonical)]}
+>
   <article class="post" lang={lang}>
     <header class="post-header">
       <p class="meta small muted">

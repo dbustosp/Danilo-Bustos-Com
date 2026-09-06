@@ -8,13 +8,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import FeaturedList from '../components/FeaturedList.astro';
 import { SITE, SITE_TITLE } from '../config/site';
 import { getFeaturedPosts, getPosts } from '../lib/posts';
+import { personJsonLd, websiteJsonLd } from '../lib/jsonld';
 
 // Si todavía no hay destacados, se muestran los más recientes.
 const featured = await getFeaturedPosts();
 const essays = featured.length > 0 ? featured : (await getPosts()).slice(0, 4);
 ---
 
-<BaseLayout title={SITE_TITLE} description={SITE.shortBio}>
+<BaseLayout title={SITE_TITLE} description={SITE.shortBio} jsonLd={[personJsonLd(), websiteJsonLd()]}>
   <section class="hero">
     <h1>
       {SITE.name}
