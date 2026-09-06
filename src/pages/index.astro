@@ -1,6 +1,17 @@
 ---
+/**
+ * Home. El flujo: encabezado de tres dominios, los ensayos destacados
+ * (la prueba del criterio), en qué está trabajando ahora, y una línea sobre
+ * él con el enlace a la bio completa.
+ */
 import BaseLayout from '../layouts/BaseLayout.astro';
+import FeaturedList from '../components/FeaturedList.astro';
 import { SITE, SITE_TITLE } from '../config/site';
+import { getFeaturedPosts, getPosts } from '../lib/posts';
+
+// Si todavía no hay destacados, se muestran los más recientes.
+const featured = await getFeaturedPosts();
+const essays = featured.length > 0 ? featured : (await getPosts()).slice(0, 4);
 ---
 
 <BaseLayout title={SITE_TITLE} description={SITE.shortBio}>
@@ -10,6 +21,32 @@ import { SITE, SITE_TITLE } from '../config/site';
       <span class="domains">{SITE.domains}</span>
     </h1>
     <p class="tagline">{SITE.tagline}</p>
+  </section>
+
+  {
+    essays.length > 0 && (
+      <section class="block" aria-labelledby="ensayos">
+        <h2 id="ensayos" class="section-label">
+          {featured.length > 0 ? 'Ensayos destacados' : 'Últimos ensayos'}
+        </h2>
+        <FeaturedList posts={essays} />
+        <p class="more">
+          <a href="/writing">Todos los escritos</a>
+        </p>
+      </section>
+    )
+  }
+
+  <section class="block" aria-labelledby="ahora">
+    <h2 id="ahora" class="section-label">En qué estoy trabajando ahora</h2>
+    <p class="lead">{SITE.now}</p>
+    <p class="more"><a href="/now">Más sobre lo que hago ahora</a></p>
+  </section>
+
+  <section class="block" aria-labelledby="sobre">
+    <h2 id="sobre" class="section-label">Sobre mí</h2>
+    <p class="lead">{SITE.shortBio}</p>
+    <p class="more"><a href="/about">Bio completa y contacto</a></p>
   </section>
 </BaseLayout>
 
@@ -34,5 +71,21 @@ import { SITE, SITE_TITLE } from '../config/site';
     margin-top: var(--space-3);
     font-size: 1.125em;
     max-width: 34em;
+  }
+
+  .block + .block {
+    margin-top: var(--space-6);
+  }
+
+  .lead {
+    font-family: var(--font-heading);
+    font-size: 1.375rem;
+    line-height: 1.4;
+    max-width: 30em;
+  }
+
+  .more {
+    margin-top: var(--space-2);
+    font-size: 0.9375rem;
   }
 </style>

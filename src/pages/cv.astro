@@ -1,0 +1,33 @@
+---
+import { getEntry, render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../config/site';
+import { formatDate, isoDate } from '../lib/dates';
+
+const entry = await getEntry('pages', 'cv');
+if (!entry) throw new Error('Falta src/content/pages/cv.md');
+const { Content } = await render(entry);
+const { title, description, updated } = entry.data;
+---
+
+<BaseLayout title={title} description={description}>
+  <header class="page-header">
+    <h1>{SITE.name}</h1>
+    <p>{title}</p>
+  </header>
+
+  <div class="prose">
+    <Content />
+  </div>
+
+  <p class="updated small muted">
+    {updated && <>Actualizado el <time datetime={isoDate(updated)}>{formatDate(updated)}</time>. </>}
+    Perfil completo en <a href={SITE.social.linkedin}>LinkedIn</a>.
+  </p>
+</BaseLayout>
+
+<style>
+  .updated {
+    margin-top: var(--space-5);
+  }
+</style>
