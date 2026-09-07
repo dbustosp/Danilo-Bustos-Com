@@ -5,7 +5,7 @@ date: 2026-09-22
 category: engineering
 featured: true
 draft: true
-lang: es
+lang: en
 # Cuando el texto esté listo, enlazar el artículo original:
 # origin:
 #   label: 'LinkedIn'

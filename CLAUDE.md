@@ -13,7 +13,11 @@ la gente lo visite por voluntad propia, no solo cuando busca su nombre.
 
 - Stack: Astro (estático), Markdown/MDX, Vercel. Node 22+.
 - Dominio: `danilobustos.com`. El dominio es el nombre; sin marcas inventadas.
-- Idioma de la interfaz: español. Un ensayo puede estar en inglés (`lang: en`).
+- Idioma de la interfaz: inglés. Un ensayo puede estar en español (`lang: es`).
+  Un ensayo se escribe en un solo idioma, nunca en los dos: no hay traducciones,
+  ni rutas por locale, ni `hreflang`, ni selector. Lo elige la audiencia de ese
+  texto concreto. En el índice, el ensayo que no está en el idioma del sitio
+  lleva una marca discreta (`ES`).
 - Comandos: `npm run dev` (local), `npm run build` (check + build), `npm run preview`.
 
 ## 2. Dónde vive cada cosa
@@ -40,7 +44,9 @@ Usa la skill `publish-post` (o `node scripts/new-post.mjs`). Lo esencial:
 
 **Slug y URL.** El nombre del archivo es la URL permanente: `/writing/<slug>`.
 Solo minúsculas, dígitos y guiones. Sin fechas, sin categorías, sin acentos
-(`ñ` → `n`). Ejemplo: `once-anos-en-equifax.md`. El build rechaza slugs
+(`ñ` → `n`). El slug va en el idioma del ensayo: `eleven-years-at-equifax.md`
+para uno en inglés, `de-puerto-natales-a-google.md` para uno en español. El
+build rechaza slugs
 inválidos y los que chocan con rutas del sitio (`about`, `now`, `cv`,
 `writing`, `lab`, `og`, `rss`, `default`, `index` y los nombres de las
 categorías). Un slug publicado no se cambia nunca.
@@ -53,10 +59,10 @@ title: 'Título del ensayo'            # obligatorio, ≤ 120 caracteres
 description: 'Una o dos frases.'      # obligatorio, ≤ 220; va a LinkedIn, Google y RSS
 date: 2026-10-13                      # obligatorio, YYYY-MM-DD
 updated: 2026-11-02                   # opcional, solo tras una revisión sustancial
-category: notas                       # obligatorio: ingenieria | enterprise | notas
+category: notes                       # obligatorio: engineering | enterprise | notes
 featured: false                       # true = destacado en la home y arriba del índice
 draft: true                           # true = visible en dev, ausente en producción
-lang: es                              # es | en
+lang: en                              # en | es; por defecto en
 origin:                               # opcional: versión previa publicada en otro sitio
   label: 'LinkedIn'
   url: 'https://www.linkedin.com/...'
@@ -89,6 +95,12 @@ El contrato: Claude aporta estructura, estrategia, corrección ligera y
 andamiaje de entrevista. Danilo aporta toda la prosa. Un borrador nuevo se
 crea con las preguntas de entrevista como cuerpo (ver los borradores en
 `src/content/writing/`).
+
+**Esto cubre también el copy del sitio, no solo los ensayos.** Son prosa de
+Danilo y se dictan igual: `domains`, `tagline`, `shortBio` y `now` en
+`src/config/site.ts`, el cuerpo de `src/content/pages/` y la descripción del
+índice de `/writing`. La microcopia de interfaz (navegación, encabezados de
+sección, estados vacíos, 404) no lo es: ésa Claude la escribe y la traduce.
 
 ### Marcadores de voz que se PRESERVAN (no son errores)
 
@@ -138,9 +150,12 @@ mixta; las categorías permiten servir a ambas sin diluir el sitio.
 
 | Categoría | Audiencia | Tono y alcance |
 | --- | --- | --- |
-| `ingenieria` | Ingenieros a los que quiere influenciar. | Cómo se construyen de verdad los sistemas. Decisiones bajo restricciones, con detalle técnico y diagramas. |
-| `enterprise` | Líderes y decisores del enterprise tradicional (nivel CIO). | Estrategia y adopción de IA. Sin jerga innecesaria; el criterio, no la implementación. |
-| `notas` | Amigos, familia y quien quiera leer. | Escritura personal genuina: vida y aprendizajes fuera de lo técnico. Nunca consejos de carrera genéricos. Material propio: Patagonia / Puerto Natales, Atlanta. |
+| `engineering` | Ingenieros a los que quiere influenciar. | Cómo se construyen de verdad los sistemas. Decisiones bajo restricciones, con detalle técnico y diagramas. Normalmente inglés. |
+| `enterprise` | Líderes y decisores del enterprise tradicional (nivel CIO). | Estrategia y adopción de IA. Sin jerga innecesaria; el criterio, no la implementación. Normalmente inglés. |
+| `notes` | Amigos, familia y quien quiera leer. | Escritura personal genuina: vida y aprendizajes fuera de lo técnico. Nunca consejos de carrera genéricos. Material propio: Patagonia / Puerto Natales, Atlanta. Español cuando el texto va a ese círculo. |
+
+El id de la categoría es la URL del índice (`/writing/engineering`). No forma
+parte de la URL de un post.
 
 Distribución (para el copy de cierre y las llamadas a la acción): Ingeniería
 y Enterprise se comparten en LinkedIn y X; Notas en Facebook e Instagram.
