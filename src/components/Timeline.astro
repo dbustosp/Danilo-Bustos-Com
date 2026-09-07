@@ -1,13 +1,12 @@
 ---
 /**
- * La trayectoria, en dos columnas: años a la izquierda, organización a la
- * derecha, y los cargos colgando de ella.
+ * La trayectoria como línea de tiempo: los años a la izquierda, un filete
+ * vertical con un punto por organización, y los cargos colgando a la derecha.
  *
- * Sin raíl, sin puntos y sin tarjetas. El canal que separa las dos columnas
- * lo hace el aire y la alineación —fechas a la derecha contra contenido a la
- * izquierda—, no una línea dibujada: §9 pide jerarquía solo con tamaño y
- * espacio. Las medidas son las de PostList, ensanchadas para que quepa un
- * rango de años.
+ * El filete es la segunda excepción a "sin bordes" (§9), junto con la regla
+ * de la cabecera. Las dos son lo mismo: un pelo de --rule que estructura, no
+ * una caja que encierra. Sin sombras, sin fondos, sin acento —el acento
+ * sigue siendo solo para enlaces— y sin nada que rodee al contenido.
  */
 import { type Org, type Position, orgStart, orgEnd } from '../lib/resume';
 import { formatMonthYear, formatYear, isoDate } from '../lib/dates';
@@ -41,18 +40,18 @@ const span = (p: Position) => range(p.start, p.end);
           <time datetime={isoDate(orgStart(org))}>{range(orgStart(org), orgEnd(org))}</time>
         </p>
 
-        <div>
+        <div class="entry">
           <p class="org">{org.org}</p>
           {org.place && <p class="place small muted">{org.place}</p>}
 
           <ol class="positions">
             {org.positions.map((position) => (
               <li>
-                <p class="title">
-                  {position.title}
-                  {/* Con un solo cargo, la fecha ya la dice la organización. */}
-                  {org.positions.length > 1 && <span class="span small muted"> · {span(position)}</span>}
-                </p>
+                <p class="title">{position.title}</p>
+                {/* Con un solo cargo, la fecha ya la dice la organización. */}
+                {org.positions.length > 1 && (
+                  <p class="span small muted">{span(position)}</p>
+                )}
                 {position.summary && <p class="summary">{position.summary}</p>}
               </li>
             ))}
@@ -71,15 +70,47 @@ const span = (p: Position) => range(p.start, p.end);
     padding: 0;
   }
 
+  .timeline {
+    position: relative;
+  }
+
+  /*
+   * El filete. Arranca y termina en el primer y el último punto, no en los
+   * bordes de la lista: una línea de tiempo empieza donde empieza el tiempo.
+   */
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 7.5rem;
+    top: 0.62em;
+    bottom: 0.62em;
+    width: 1px;
+    background: var(--rule);
+  }
+
   .timeline > li {
+    position: relative;
     display: grid;
     grid-template-columns: 7rem 1fr;
-    gap: var(--space-2);
+    column-gap: var(--space-3);
     align-items: baseline;
   }
 
   .timeline > li + li {
-    margin-top: var(--space-4);
+    margin-top: var(--space-5);
+  }
+
+  /* Un punto por organización, no por cargo: el hito es el cambio de casa. */
+  .timeline > li::before {
+    content: '';
+    position: absolute;
+    left: 7.5rem;
+    top: 0.5em;
+    width: 7px;
+    height: 7px;
+    margin-left: -3px;
+    border-radius: 50%;
+    background: var(--muted);
   }
 
   .dates {
@@ -88,6 +119,10 @@ const span = (p: Position) => range(p.start, p.end);
     font-variant-numeric: tabular-nums;
     text-align: right;
     white-space: nowrap;
+  }
+
+  .entry {
+    padding-left: var(--space-2);
   }
 
   .org {
@@ -109,18 +144,33 @@ const span = (p: Position) => range(p.start, p.end);
     margin-top: var(--space-2);
   }
 
+  /* Título y años en dos columnas: los años forman su propia columna limpia. */
+  .positions > li {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    column-gap: var(--space-2);
+    align-items: baseline;
+  }
+
   .span {
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
   }
 
   .summary {
-    margin-top: 0.2rem;
-    max-width: 36em;
+    grid-column: 1 / -1;
+    margin-top: 0.25rem;
+    max-width: 34em;
     color: var(--muted);
   }
 
   @media (max-width: 40rem) {
+    /* Sin dos columnas no hay dónde anclar el filete: se retira entero. */
+    .timeline::before,
+    .timeline > li::before {
+      display: none;
+    }
+
     .timeline > li {
       grid-template-columns: 1fr;
       gap: 0.1rem;
@@ -128,6 +178,10 @@ const span = (p: Position) => range(p.start, p.end);
 
     .dates {
       text-align: left;
+    }
+
+    .entry {
+      padding-left: 0;
     }
   }
 </style>

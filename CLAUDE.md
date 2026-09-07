@@ -229,10 +229,18 @@ canal de distribución por sí solo.
 ## 9. Diseño: lo que no se rompe
 
 - Editorial, tipo revista. Muchísimo espacio en blanco.
-- **Sin bordes, sin sombras, sin cajas.** Jerarquía solo con tamaño y espacio.
-  Una única excepción, deliberada: la regla bajo la cabecera (`--rule`, el
-  mismo token de `hr` y las tablas). Es lo que separa la cabecera del cuerpo
-  y lo que hace que se lea como cabecera de periódico. No se añaden más.
+- **Sin sombras y sin cajas. Nada encierra al contenido.** Jerarquía con
+  tamaño y espacio; el color no la hace nunca.
+
+  Lo que sí se permite es un **pelo de `--rule` que estructura sin encerrar**,
+  y hay exactamente dos: la regla bajo la cabecera y el filete vertical de la
+  línea de tiempo en `/resume` (con un punto por organización, en `--muted`).
+  Los dos usan el mismo token que `hr` y las tablas.
+
+  La prueba antes de añadir un tercero: **¿rodea algo?** Si el trazo cierra
+  un perímetro —una tarjeta, un recuadro, un aviso— no va. Si es una sola
+  línea que marca un eje o separa dos zonas, se puede discutir. Y sombras,
+  fondos de color y bordes redondeados sobre bloques no entran nunca.
 - Un único color de acento (`--accent`), solo para enlaces. Los del menú lo
   son: van en acento y subrayados, no apagados.
 - **La cabecera es la misma en todas las páginas**: nombre, línea de
