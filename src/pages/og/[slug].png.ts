@@ -15,7 +15,7 @@ export const PAGE_IMAGES: Record<string, OgInput> = {
   writing: { title: 'Writing', subtitle: 'Engineering, enterprise, and personal notes.' },
   now: { title: "What I'm working on now" },
   about: { title: 'About', subtitle: SITE.shortBio },
-  cv: { title: 'CV' },
+  resume: { title: 'Resume' },
 };
 
 /** Ruta de la imagen de una página fija o de un ensayo. */

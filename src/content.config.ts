@@ -21,12 +21,12 @@ const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const RESERVED_SLUGS = new Set([
   ...CATEGORY_IDS,
   'about',
-  'cv',
   'default', // imagen Open Graph por defecto (/og/default.png)
   'index',
   'lab',
   'now',
   'og',
+  'resume',
   'rss',
   'writing',
 ]);

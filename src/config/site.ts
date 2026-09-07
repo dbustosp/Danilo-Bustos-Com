@@ -59,12 +59,13 @@ export const SITE = {
   /** Dirección de copy de la sección "Ahora" en la home. */
   now: 'Construyo los sistemas que hacen que la inteligencia artificial funcione dentro de una empresa real.',
 
-  /** Navegación principal. El CV vive en /cv pero no se destaca aquí. */
+  /** Navegación principal. El resume entra aquí: es lo que busca un reclutador. */
   nav: [
     { href: '/', label: 'Home' },
     { href: '/writing', label: 'Writing' },
     { href: '/now', label: 'Now' },
     { href: '/about', label: 'About' },
+    { href: '/resume', label: 'Resume' },
   ],
 } as const;
 
