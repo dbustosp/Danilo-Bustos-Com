@@ -23,7 +23,7 @@ export const SITE = {
 
   /** Línea de apoyo bajo el título. */
   tagline:
-    'Creo soluciones de software y plataformas que aplican inteligencia artificial dentro del enterprise.',
+    'I build software solutions and platforms that apply artificial intelligence inside the enterprise.',
 
   /** Bio corta: se usa como descripción por defecto y en la sección About de la home. */
   shortBio:
