@@ -19,7 +19,7 @@ export const SITE = {
    * Título del encabezado de la home: nombre + tres dominios.
    * Posicionamiento por territorio, sin verbo y sin promesa.
    */
-  domains: 'Recuperación de información, inteligencia artificial y sistemas distribuidos',
+  domains: 'Information retrieval, artificial intelligence, and distributed systems',
 
   /** Línea de apoyo bajo el título. */
   tagline:
