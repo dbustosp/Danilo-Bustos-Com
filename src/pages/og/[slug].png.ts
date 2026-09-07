@@ -12,10 +12,10 @@ import { getPosts } from '../../lib/posts';
 /** Imágenes de las páginas fijas. La clave es el nombre del archivo. */
 export const PAGE_IMAGES: Record<string, OgInput> = {
   default: { title: SITE.name, subtitle: SITE.domains },
-  writing: { title: 'Escritos', subtitle: 'Ingeniería, enterprise y notas personales.' },
-  now: { title: 'En qué estoy trabajando ahora' },
-  about: { title: 'Sobre mí', subtitle: SITE.shortBio },
-  cv: { title: 'Currículum' },
+  writing: { title: 'Writing', subtitle: 'Engineering, enterprise, and personal notes.' },
+  now: { title: "What I'm working on now" },
+  about: { title: 'About', subtitle: SITE.shortBio },
+  cv: { title: 'CV' },
 };
 
 /** Ruta de la imagen de una página fija o de un ensayo. */

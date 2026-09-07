@@ -26,28 +26,28 @@ const essays = featured.length > 0 ? featured : (await getPosts()).slice(0, 4);
 
   {
     essays.length > 0 && (
-      <section class="block" aria-labelledby="ensayos">
-        <h2 id="ensayos" class="section-label">
-          {featured.length > 0 ? 'Ensayos destacados' : 'Últimos ensayos'}
+      <section class="block" aria-labelledby="essays">
+        <h2 id="essays" class="section-label">
+          {featured.length > 0 ? 'Featured essays' : 'Latest essays'}
         </h2>
         <FeaturedList posts={essays} />
         <p class="more">
-          <a href="/writing">Todos los escritos</a>
+          <a href="/writing">All writing</a>
         </p>
       </section>
     )
   }
 
-  <section class="block" aria-labelledby="ahora">
-    <h2 id="ahora" class="section-label">En qué estoy trabajando ahora</h2>
+  <section class="block" aria-labelledby="now">
+    <h2 id="now" class="section-label">What I'm working on now</h2>
     <p class="lead">{SITE.now}</p>
-    <p class="more"><a href="/now">Más sobre lo que hago ahora</a></p>
+    <p class="more"><a href="/now">More about what I do now</a></p>
   </section>
 
-  <section class="block" aria-labelledby="sobre">
-    <h2 id="sobre" class="section-label">Sobre mí</h2>
+  <section class="block" aria-labelledby="about">
+    <h2 id="about" class="section-label">About</h2>
     <p class="lead">{SITE.shortBio}</p>
-    <p class="more"><a href="/about">Bio completa y contacto</a></p>
+    <p class="more"><a href="/about">Full bio and contact</a></p>
   </section>
 </BaseLayout>
 

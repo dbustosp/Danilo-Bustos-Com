@@ -65,8 +65,8 @@ const writing = defineCollection({
     featured: z.boolean().default(false),
     /** Borrador: visible en desarrollo, excluido del build de producción. */
     draft: z.boolean().default(false),
-    /** Idioma del post. La interfaz es en español; un post puede estar en inglés. */
-    lang: z.enum(['es', 'en']).default('es'),
+    /** Idioma del post. La interfaz es en inglés; un post puede estar en español. */
+    lang: z.enum(['es', 'en']).default('en'),
     /** Si una versión anterior se publicó en otro sitio (por ejemplo, LinkedIn). */
     origin: z
       .object({

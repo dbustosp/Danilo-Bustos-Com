@@ -16,21 +16,21 @@ const isEmpty = featured.length === 0 && rest.length === 0;
 ---
 
 <BaseLayout
-  title="Escritos"
+  title="Writing"
   description="Ensayos sobre ingeniería, adopción de inteligencia artificial en el enterprise y notas personales."
   image="/og/writing.png"
 >
   <header class="page-header">
-    <h1>Escritos</h1>
+    <h1>Writing</h1>
   </header>
 
   <CategoryNav />
 
   {
     featured.length > 0 && (
-      <section aria-labelledby="destacados">
-        <h2 id="destacados" class="section-label">
-          Destacados
+      <section aria-labelledby="featured">
+        <h2 id="featured" class="section-label">
+          Featured
         </h2>
         <FeaturedList posts={featured} />
       </section>
@@ -39,16 +39,16 @@ const isEmpty = featured.length === 0 && rest.length === 0;
 
   {
     rest.length > 0 && (
-      <section aria-labelledby="por-fecha">
-        <h2 id="por-fecha" class="section-label">
-          Por fecha
+      <section aria-labelledby="by-date">
+        <h2 id="by-date" class="section-label">
+          By date
         </h2>
         <PostList posts={rest} />
       </section>
     )
   }
 
-  {isEmpty && <p class="muted">Todavía no hay ensayos publicados.</p>}
+  {isEmpty && <p class="muted">No essays published yet.</p>}
 </BaseLayout>
 
 <style>

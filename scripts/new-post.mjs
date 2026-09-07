@@ -32,7 +32,7 @@ if (!CATEGORIES.includes(category)) {
   process.exit(1);
 }
 
-const lang = flag('lang') ?? 'es';
+const lang = flag('lang') ?? 'en';
 const date = flag('date') ?? new Date().toISOString().slice(0, 10);
 const featured = args.includes('--featured');
 const origin = flag('origin');

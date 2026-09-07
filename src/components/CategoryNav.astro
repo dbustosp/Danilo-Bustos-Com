@@ -12,12 +12,12 @@ interface Props {
 const { current } = Astro.props;
 
 const items = [
-  { href: '/writing', label: 'Todo', id: undefined as CategoryId | undefined },
+  { href: '/writing', label: 'All', id: undefined as CategoryId | undefined },
   ...CATEGORY_IDS.map((id) => ({ href: categoryUrl(id), label: CATEGORIES[id].label, id })),
 ];
 ---
 
-<nav aria-label="Categorías" class="category-nav">
+<nav aria-label="Categories" class="category-nav">
   <ul>
     {
       items.map((item) => (

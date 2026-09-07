@@ -12,8 +12,8 @@ export const SITE = {
   url: 'https://danilobustos.com',
 
   /** Idioma y locale por defecto de la interfaz. Cada post puede declarar el suyo. */
-  lang: 'es',
-  locale: 'es_CL',
+  lang: 'en',
+  locale: 'en_US',
 
   /**
    * Título del encabezado de la home: nombre + tres dominios.
@@ -53,9 +53,9 @@ export const SITE = {
 
   /** Navegación principal. El CV vive en /cv pero no se destaca aquí. */
   nav: [
-    { href: '/writing', label: 'Escritos' },
-    { href: '/now', label: 'Ahora' },
-    { href: '/about', label: 'Sobre mí' },
+    { href: '/writing', label: 'Writing' },
+    { href: '/now', label: 'Now' },
+    { href: '/about', label: 'About' },
   ],
 } as const;
 

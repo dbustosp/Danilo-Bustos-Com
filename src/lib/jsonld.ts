@@ -18,7 +18,7 @@ export function personJsonLd() {
     name: SITE.name,
     url: SITE.url,
     description: SITE.shortBio,
-    knowsAbout: ['Recuperación de información', 'Inteligencia artificial', 'Sistemas distribuidos'],
+    knowsAbout: ['Information retrieval', 'Artificial intelligence', 'Distributed systems'],
     sameAs: [SITE.social.linkedin, SITE.social.github, SITE.social.twitter].filter(Boolean),
   };
 }

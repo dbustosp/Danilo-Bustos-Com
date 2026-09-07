@@ -25,5 +25,5 @@ const posts = await getPostsByCategory(category);
     <p>{meta.description}</p>
   </header>
   <CategoryNav current={category} />
-  {posts.length > 0 ? <PostList posts={posts} /> : <p class="muted">Todavía no hay ensayos en esta categoría.</p>}
+  {posts.length > 0 ? <PostList posts={posts} /> : <p class="muted">No essays in this category yet.</p>}
 </BaseLayout>
