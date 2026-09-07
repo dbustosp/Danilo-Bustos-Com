@@ -56,9 +56,6 @@ export const SITE = {
    */
   newsletter: '',
 
-  /** Dirección de copy de la sección "Ahora" en la home. */
-  now: 'Construyo los sistemas que hacen que la inteligencia artificial funcione dentro de una empresa real.',
-
   /** Navegación principal. El resume entra aquí: es lo que busca un reclutador. */
   nav: [
     { href: '/', label: 'Home' },

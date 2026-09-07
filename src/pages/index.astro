@@ -17,9 +17,10 @@ const essays = featured.length > 0 ? featured : (await getPosts()).slice(0, 4);
 
 <BaseLayout title={SITE_TITLE} description={SITE.shortBio} jsonLd={[personJsonLd(), websiteJsonLd()]}>
   {/*
-    Sin encabezado propio ni sección "About": el nombre y el territorio los
-    lleva la cabecera, y shortBio no era más que otra forma de decir lo
-    mismo. Queda el tagline y el enlace a la bio completa.
+    La home es una portada, no un resumen del sitio. No lleva encabezado
+    propio —el nombre y el territorio los pone la cabecera— ni secciones
+    "About" y "Now": las dos repetían páginas que ya están en el menú.
+    Queda lo que el sitio es (§1): el tagline y lo que se escribe.
   */}
   <p class="tagline">{SITE.tagline}</p>
   <p class="more"><a href="/about">Full bio and contact</a></p>
@@ -37,12 +38,6 @@ const essays = featured.length > 0 ? featured : (await getPosts()).slice(0, 4);
       </section>
     )
   }
-
-  <section class="block" aria-labelledby="now">
-    <h2 id="now" class="section-label">What I'm working on now</h2>
-    <p class="lead">{SITE.now}</p>
-    <p class="more"><a href="/now">More about what I do now</a></p>
-  </section>
 </BaseLayout>
 
 <style>
@@ -57,12 +52,6 @@ const essays = featured.length > 0 ? featured : (await getPosts()).slice(0, 4);
     margin-top: var(--space-6);
   }
 
-  .lead {
-    font-family: var(--font-heading);
-    font-size: 1.375rem;
-    line-height: 1.4;
-    max-width: 30em;
-  }
 
   .more {
     margin-top: var(--space-2);
