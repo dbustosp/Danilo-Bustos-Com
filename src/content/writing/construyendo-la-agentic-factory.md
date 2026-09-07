@@ -2,7 +2,7 @@
 title: 'Lo que aprendí construyendo la Agentic Factory'
 description: 'Por qué los agentes hechos uno a uno no escalan en una empresa regulada, y qué hace falta para convertir su creación en un músculo repetible.'
 date: 2026-09-22
-category: ingenieria
+category: engineering
 featured: true
 draft: true
 lang: es
@@ -16,8 +16,8 @@ lang: es
   BORRADOR. Migración del artículo de LinkedIn "From AI Foundations to
   Agentic Factory: my key learnings".
 
-  Categoría sugerida: ingenieria o enterprise, según el enfoque con que se
-  reescriba. Si el hilo es la plataforma (cómo se construye), ingenieria.
+  Categoría sugerida: engineering o enterprise, según el enfoque con que se
+  reescriba. Si el hilo es la plataforma (cómo se construye), engineering.
   Si el hilo es la adopción (por qué una empresa lo necesita), enterprise.
 
   Regla de migración: no copiar y pegar. Reescribir más largo, con más

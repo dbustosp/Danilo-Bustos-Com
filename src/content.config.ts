@@ -59,7 +59,7 @@ const writing = defineCollection({
     date: z.coerce.date(),
     /** Última revisión sustancial, si la hubo. */
     updated: z.coerce.date().optional(),
-    /** Una de las tres categorías: ingenieria | enterprise | notas. */
+    /** Una de las tres categorías: engineering | enterprise | notes. */
     category: z.enum(CATEGORY_IDS),
     /** Destacado en la home y arriba del índice. Se rota desde aquí, no desde el código. */
     featured: z.boolean().default(false),

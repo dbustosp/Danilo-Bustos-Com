@@ -2,7 +2,7 @@
 title: 'Once años en Equifax'
 description: 'Por qué quedarse once años en una misma empresa fue una decisión, no una inercia. Lo que da y lo que cuesta.'
 date: 2026-09-15
-category: notas
+category: notes
 featured: true
 draft: true
 lang: es

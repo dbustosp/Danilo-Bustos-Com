@@ -7,7 +7,7 @@ title: 'Título del ensayo'
 description: 'Una o dos frases. Es lo que se ve en LinkedIn, en Google y en el feed.'
 date: 2026-01-01
 # updated: 2026-01-15
-category: ingenieria # ingenieria | enterprise | notas
+category: engineering # engineering | enterprise | notes
 featured: false
 draft: true
 lang: es # es | en

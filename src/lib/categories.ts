@@ -7,20 +7,20 @@
  * por categoría (/writing/<id>). Nunca forma parte de la URL de un post.
  */
 export const CATEGORIES = {
-  ingenieria: {
-    label: 'Ingeniería',
-    description: 'Cómo se construyen de verdad los sistemas: decisiones técnicas bajo restricciones.',
-    audience: 'Ingenieros a los que quiero influenciar.',
+  engineering: {
+    label: 'Engineering',
+    description: 'How systems actually get built: technical decisions under real constraints.',
+    audience: 'Engineers I want to influence.',
   },
   enterprise: {
     label: 'Enterprise',
-    description: 'Estrategia y adopción de inteligencia artificial en la empresa tradicional.',
-    audience: 'Líderes y decisores del enterprise.',
+    description: 'Artificial intelligence strategy and adoption inside the traditional enterprise.',
+    audience: 'Enterprise leaders and decision makers.',
   },
-  notas: {
-    label: 'Notas',
-    description: 'Escritura personal: vida y aprendizajes fuera de lo técnico.',
-    audience: 'Amigos, familia y quien quiera leer.',
+  notes: {
+    label: 'Notes',
+    description: 'Personal writing: life and lessons outside the technical work.',
+    audience: 'Friends, family, and anyone who wants to read.',
   },
 } as const;
 
