@@ -1,13 +1,19 @@
 ---
 /**
- * Los ensayos definitorios, en clave de portada: antetítulo con la
- * categoría, titular grande y una entradilla. Es lo primero que ve un
+ * Los ensayos definitorios, en clave de portada. Es lo primero que ve un
  * visitante nuevo.
  *
- * La jerarquía la hacen la escala y el aire, no una caja (§9): del
- * antetítulo al titular hay un salto real —0.8125rem a 1.875rem— y entre
- * entradas hay --space-5. Es lo que separa una portada de una lista, y lo
- * que distingue esto del índice compacto de /writing.
+ * No todos pesan igual, que es lo que separa una portada de una lista: el
+ * más reciente se lleva el titular grande y la entradilla, y el resto queda
+ * en dos líneas. Así caben todos sin bajar y aparece jerarquía donde antes
+ * había bloques idénticos.
+ *
+ * Cuál es el principal no se configura: getFeaturedPosts() viene ordenado
+ * por fecha, así que es el primero. Un campo menos que mantener a mano.
+ *
+ * Todo con escala y aire, sin caja (§9), y dentro de la columna de lectura:
+ * una rejilla de tarjetas a 66ch daría ~320px por columna y ahí un titular
+ * en Newsreader se parte en cuatro líneas.
  */
 import type { Post } from '../lib/posts';
 import { postUrl } from '../lib/posts';
@@ -25,8 +31,8 @@ const { posts } = Astro.props;
 
 <ul class="featured">
   {
-    posts.map((post) => (
-      <li>
+    posts.map((post, index) => (
+      <li class:list={{ lead: index === 0 }}>
         {/* La categoría va arriba: en una audiencia mixta, saber si algo es
             técnico o personal tiene que llegar antes que el titular. */}
         <p class="eyebrow section-label">
@@ -47,9 +53,12 @@ const { posts } = Astro.props;
           </a>
         </h3>
 
-        <p class="description" lang={post.data.lang}>
-          {post.data.description}
-        </p>
+        {/* La entradilla es lo que distingue al principal del resto. */}
+        {index === 0 && (
+          <p class="description" lang={post.data.lang}>
+            {post.data.description}
+          </p>
+        )}
       </li>
     ))
   }
@@ -62,8 +71,14 @@ const { posts } = Astro.props;
     padding: 0;
   }
 
+  /* Los compactos son una lista y van juntos. */
   li + li {
-    margin-top: var(--space-5);
+    margin-top: var(--space-3);
+  }
+
+  /* Corte entre la pieza principal y la lista. */
+  li.lead + li {
+    margin-top: var(--space-4);
   }
 
   /*
@@ -77,6 +92,10 @@ const { posts } = Astro.props;
   }
 
   h3 {
+    font-size: 1.25rem;
+  }
+
+  li.lead h3 {
     font-size: 1.875rem;
     max-width: 18em;
   }
@@ -92,7 +111,7 @@ const { posts } = Astro.props;
   }
 
   @media (max-width: 40rem) {
-    h3 {
+    li.lead h3 {
       font-size: 1.5rem;
     }
   }
