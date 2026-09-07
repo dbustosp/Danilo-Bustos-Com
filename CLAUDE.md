@@ -61,7 +61,7 @@ description: 'Una o dos frases.'      # obligatorio, ≤ 220; va a LinkedIn, Goo
 date: 2026-10-13                      # obligatorio, YYYY-MM-DD
 updated: 2026-11-02                   # opcional, solo tras una revisión sustancial
 category: notes                       # obligatorio: engineering | enterprise | notes
-featured: false                       # true = destacado en la home y arriba del índice
+featured: false                       # true = sale en la portada; el índice no lo distingue
 draft: true                           # true = visible en dev, ausente en producción
 lang: en                              # en | es; por defecto en
 origin:                               # opcional: versión previa publicada en otro sitio
@@ -72,6 +72,12 @@ origin:                               # opcional: versión previa publicada en o
 
 **Destacados.** Se marcan con `featured: true`, nunca a mano en el código.
 Mantén tres o cuatro. Para rotar, cambia el campo en dos archivos.
+
+El campo hace **una sola cosa**: decidir qué sale en la portada. El índice de
+`/writing` lista todo por fecha y no distingue destacados; si los repitiera,
+ir de la home al índice no enseñaría nada nuevo. La home promociona, el índice
+lista. En la portada, además, el destacado más reciente es el que se lleva el
+titular grande —eso tampoco se configura: sale del orden por fecha.
 
 **Borradores.** `draft: true` existe en `npm run dev` y no existe en el
 build. Para publicar: `draft: false`, fecha real, `npm run build` en verde.
