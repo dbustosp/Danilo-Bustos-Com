@@ -26,6 +26,13 @@ export type Position = {
   bullets?: string[];
 };
 
+/*
+ * A partir de aquí el detalle se pliega. La frontera es la mudanza a
+ * Estados Unidos en 2020: lo de antes sigue estando entero, pero un
+ * reclutador escanea, y seis cargos abiertos de par en par no se escanean.
+ */
+export const DETAIL_CUTOFF_YEAR = 2020;
+
 export type Org = {
   /** La organización. Es el ancla visual de la entrada. */
   org: string;

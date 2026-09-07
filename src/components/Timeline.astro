@@ -8,7 +8,7 @@
  * una caja que encierra. Sin sombras, sin fondos, sin acento —el acento
  * sigue siendo solo para enlaces— y sin nada que rodee al contenido.
  */
-import { type Org, type Position, orgStart, orgEnd } from '../lib/resume';
+import { type Org, type Position, orgStart, orgEnd, DETAIL_CUTOFF_YEAR } from '../lib/resume';
 import { formatMonthYear, formatYear, isoDate } from '../lib/dates';
 import { SITE } from '../config/site';
 
@@ -30,6 +30,17 @@ const range = (start: Date, end?: Date) => {
 };
 
 const span = (p: Position) => range(p.start, p.end);
+
+const hasDetail = (p: Position) => Boolean(p.summary?.length || p.bullets?.length);
+
+/*
+ * Los cargos anteriores a la mudanza se muestran plegados, no recortados.
+ * Se mira el inicio, no el fin: lo que separa las dos etapas es dónde
+ * empezó cada cargo. Y en UTC, porque las fechas se construyen en UTC y
+ * getFullYear() usa la hora local: en Atlanta, un 1 de enero se leería
+ * como el año anterior.
+ */
+const isFolded = (p: Position) => p.start.getUTCFullYear() < DETAIL_CUTOFF_YEAR;
 ---
 
 <ol class="timeline">
@@ -52,14 +63,31 @@ const span = (p: Position) => range(p.start, p.end);
                 {org.positions.length > 1 && (
                   <p class="span small muted">{span(position)}</p>
                 )}
-                {position.summary?.map((paragraph) => <p class="summary">{paragraph}</p>)}
-                {position.bullets && (
-                  <ul class="bullets">
-                    {position.bullets.map((bullet) => (
-                      <li>{bullet}</li>
-                    ))}
-                  </ul>
-                )}
+                {hasDetail(position) &&
+                  (isFolded(position) ? (
+                    <details class="detail">
+                      <summary class="small muted">Details</summary>
+                      {position.summary?.map((paragraph) => <p class="summary">{paragraph}</p>)}
+                      {position.bullets && (
+                        <ul class="bullets">
+                          {position.bullets.map((bullet) => (
+                            <li>{bullet}</li>
+                          ))}
+                        </ul>
+                      )}
+                    </details>
+                  ) : (
+                    <>
+                      {position.summary?.map((paragraph) => <p class="summary">{paragraph}</p>)}
+                      {position.bullets && (
+                        <ul class="bullets">
+                          {position.bullets.map((bullet) => (
+                            <li>{bullet}</li>
+                          ))}
+                        </ul>
+                      )}
+                    </>
+                  ))}
               </li>
             ))}
           </ol>
@@ -162,6 +190,37 @@ const span = (p: Position) => range(p.start, p.end);
   .span {
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
+  }
+
+  .detail {
+    grid-column: 1 / -1;
+  }
+
+  /* Sin caja y sin triángulo del sistema: solo una palabra que se pulsa. */
+  .detail > summary {
+    list-style: none;
+    cursor: pointer;
+    width: max-content;
+    margin-top: 0.35rem;
+  }
+
+  .detail > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .detail > summary::before {
+    content: '+';
+    display: inline-block;
+    width: 1em;
+    color: var(--rule);
+  }
+
+  .detail[open] > summary::before {
+    content: '–';
+  }
+
+  .detail > summary:hover {
+    color: var(--text);
   }
 
   .summary,
