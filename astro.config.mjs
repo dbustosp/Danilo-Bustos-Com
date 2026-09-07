@@ -33,6 +33,16 @@ export default defineConfig({
   // Sitio 100 % estático: cada push a producción genera HTML plano.
   output: 'static',
 
+  build: {
+    /*
+     * El CSS del sitio entero cabe en unos pocos kB, así que va dentro del
+     * HTML: una petición bloqueante menos antes del primer render. Se pierde
+     * la caché entre páginas, que aquí importa poco porque casi todo el mundo
+     * llega desde fuera y ve una sola página.
+     */
+    inlineStylesheets: 'always',
+  },
+
   integrations: [
     // Markdown para casi todo; MDX cuando un ensayo necesite un componente.
     mdx(),
