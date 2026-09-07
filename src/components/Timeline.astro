@@ -52,7 +52,14 @@ const span = (p: Position) => range(p.start, p.end);
                 {org.positions.length > 1 && (
                   <p class="span small muted">{span(position)}</p>
                 )}
-                {position.summary && <p class="summary">{position.summary}</p>}
+                {position.summary?.map((paragraph) => <p class="summary">{paragraph}</p>)}
+                {position.bullets && (
+                  <ul class="bullets">
+                    {position.bullets.map((bullet) => (
+                      <li>{bullet}</li>
+                    ))}
+                  </ul>
+                )}
               </li>
             ))}
           </ol>
@@ -157,11 +164,40 @@ const span = (p: Position) => range(p.start, p.end);
     white-space: nowrap;
   }
 
-  .summary {
+  .summary,
+  .bullets {
     grid-column: 1 / -1;
-    margin-top: 0.25rem;
+    margin-top: 0.35rem;
     max-width: 34em;
     color: var(--muted);
+  }
+
+  .summary + .summary {
+    margin-top: 0.5rem;
+  }
+
+  /*
+   * Viñetas con raya al margen: marcan la lista sin el punto redondo de una
+   * lista de prosa, que aquí competiría con los puntos de la línea de tiempo.
+   */
+  .bullets {
+    padding: 0;
+    list-style: none;
+  }
+
+  .bullets > li {
+    padding-left: 1.1em;
+    text-indent: -1.1em;
+  }
+
+  .bullets > li + li {
+    margin-top: 0.35rem;
+  }
+
+  .bullets > li::before {
+    content: '–';
+    margin-right: 0.5em;
+    color: var(--rule);
   }
 
   @media (max-width: 40rem) {
