@@ -99,13 +99,27 @@ export const ORGS: Org[] = [
   {
     org: 'University of Notre Dame',
     place: 'South Bend, Indiana',
-    positions: [{ title: 'Graduate Intern', start: new Date('2015-01-01'), end: new Date('2015-04-01') }],
+    positions: [
+      {
+        title: 'Graduate Intern',
+        start: new Date('2015-01-01'),
+        end: new Date('2015-04-01'),
+        summary:
+          'During my internship at Notre Dame I worked with Hadoop. I had a very good understanding about Hadoop Distributed File System and about the computing model MapReduce. I had to build pure MapReduce code using Java, specifically I parsed Wikipedia using this technology and at the same time I created a graph where the Wiki-pages are the nodes and Wiki-links are the edges. I also used Google Pregel and Vertex Programming to create a Wikipedia Graph.',
+      },
+    ],
   },
   {
     org: 'Yahoo! Research Latin America',
     place: 'Santiago, Chile',
     positions: [
-      { title: 'Software Engineer', start: new Date('2014-03-01'), end: new Date('2014-12-01') },
+      {
+        title: 'Software Engineer',
+        start: new Date('2014-03-01'),
+        end: new Date('2014-12-01'),
+        summary:
+          'Implemented the WAND algorithm, scheduling logic, and a C++ ML model to predict online query response times for vertical search engines.',
+      },
       { title: 'Student Researcher', start: new Date('2013-01-01'), end: new Date('2014-12-01') },
     ],
   },
