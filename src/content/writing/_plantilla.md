@@ -10,7 +10,7 @@ date: 2026-01-01
 category: engineering # engineering | enterprise | notes
 featured: false
 draft: true
-lang: es # es | en
+lang: en # en | es
 # origin:
 #   label: 'LinkedIn'
 #   url: 'https://www.linkedin.com/...'
