@@ -1,6 +1,6 @@
 ---
-title: 'Sobre mí'
-description: 'Danilo Bustos lleva quince años aplicando recuperación de información e inteligencia artificial a problemas de enterprise. Hoy lidera la Agentic Factory en Equifax; en octubre se incorpora a Google Cloud AI.'
+title: 'About'
+description: 'Danilo Bustos has spent fifteen years applying information retrieval and artificial intelligence to enterprise problems. He leads the Agentic Factory at Equifax; in October he joins Google Cloud AI.'
 ---
 
-Danilo Bustos lleva quince años aplicando recuperación de información e inteligencia artificial a problemas de enterprise, construyendo herramientas y plataformas analíticas a gran escala. Hoy lidera la Agentic Factory en Equifax, la plataforma que estandariza cómo se construyen, despliegan y operan agentes autónomos bajo restricciones regulatorias. En octubre se incorpora a Google Cloud AI como Staff Forward Deployed Engineer, para ayudar a las grandes empresas del mundo a adoptar inteligencia artificial de verdad.
+Danilo Bustos has spent fifteen years applying information retrieval and artificial intelligence to enterprise problems, building tools and analytics platforms at large scale. Today he leads the Agentic Factory at Equifax, the platform that standardizes how autonomous agents are built, deployed, and operated under regulatory constraints. In October he joins Google Cloud AI as a Staff Forward Deployed Engineer, to help the largest enterprises in the world adopt artificial intelligence for real.

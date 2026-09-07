@@ -18,25 +18,25 @@ const { Content } = await render(entry);
     <Content />
   </div>
 
-  <section class="contact" aria-labelledby="contacto">
-    <h2 id="contacto" class="section-label">Contacto</h2>
+  <section class="contact" aria-labelledby="contact">
+    <h2 id="contact" class="section-label">Contact</h2>
     <p>
       {
         SITE.email ? (
           <>
-            Escríbeme a <a href={`mailto:${SITE.email}`}>{SITE.email}</a> o por{' '}
+            Email me at <a href={`mailto:${SITE.email}`}>{SITE.email}</a> or reach me on{' '}
             <a href={SITE.social.linkedin}>LinkedIn</a>.
           </>
         ) : (
           <>
-            La mejor forma de escribirme es por <a href={SITE.social.linkedin}>LinkedIn</a>.
+            The best way to reach me is on <a href={SITE.social.linkedin}>LinkedIn</a>.
           </>
         )
       }
-      {' '}El código que publico está en <a href={SITE.social.github}>GitHub</a>.
+      {' '}The code I publish is on <a href={SITE.social.github}>GitHub</a>.
     </p>
     <p class="small muted">
-      El <a href="/cv">currículum</a> está en una página aparte.
+      The <a href="/cv">CV</a> is on a separate page.
     </p>
   </section>
 </BaseLayout>
