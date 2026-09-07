@@ -11,7 +11,7 @@ const { title, description, updated } = entry.data;
 
 <BaseLayout title={title} description={description} image="/og/now.png">
   <header class="page-header">
-    <h1>En qué estoy trabajando ahora</h1>
+    <h1>What I'm working on now</h1>
   </header>
 
   <div class="prose">
@@ -21,7 +21,7 @@ const { title, description, updated } = entry.data;
   {
     updated && (
       <p class="updated small muted">
-        Actualizado el <time datetime={isoDate(updated)}>{formatDate(updated)}</time>.
+        Updated on <time datetime={isoDate(updated)}>{formatDate(updated)}</time>.
       </p>
     )
   }
