@@ -39,6 +39,13 @@
     cursor: pointer;
     line-height: 0;
     border-radius: 4px;
+    transition: color 140ms ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .theme-toggle {
+      transition: none;
+    }
   }
 
   .theme-toggle:hover {
