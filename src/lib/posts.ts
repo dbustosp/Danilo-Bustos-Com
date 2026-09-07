@@ -5,6 +5,7 @@
  */
 import { getCollection, type CollectionEntry } from 'astro:content';
 import type { CategoryId } from './categories';
+import type { Lang } from './i18n';
 
 export type Post = CollectionEntry<'writing'>;
 
@@ -28,6 +29,12 @@ export async function getFeaturedPosts(limit = 4): Promise<Post[]> {
 export async function getPostsByCategory(category: CategoryId): Promise<Post[]> {
   const posts = await getPosts();
   return posts.filter((post) => post.data.category === category);
+}
+
+/** Los ensayos escritos en un idioma. Alimenta /writing/english y /espanol. */
+export async function getPostsByLang(lang: Lang): Promise<Post[]> {
+  const posts = await getPosts();
+  return posts.filter((post) => post.data.lang === lang);
 }
 
 /** URL permanente de un post: solo el slug, sin fecha ni categoría. */

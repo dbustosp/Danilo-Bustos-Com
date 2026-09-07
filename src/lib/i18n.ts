@@ -14,6 +14,29 @@ export const LOCALES: Record<Lang, string> = {
   en: 'en-US',
 };
 
+/**
+ * Los dos idiomas, en el orden en que se ofrecen: primero el del sitio.
+ */
+export const LANG_IDS: Lang[] = ['en', 'es'];
+
+/** Cada idioma se nombra en su propio idioma, que es la convención. */
+export const LANG_LABELS: Record<Lang, string> = {
+  en: 'English',
+  es: 'Español',
+};
+
+/**
+ * Rutas de filtro: /writing/english y /writing/espanol. Sin acentos, como
+ * cualquier slug del sitio, y reservadas en content.config.ts para que
+ * ningún ensayo pueda ocuparlas.
+ */
+export const LANG_ROUTES: Record<Lang, string> = {
+  en: 'english',
+  es: 'espanol',
+};
+
+export const langUrl = (lang: Lang) => `/writing/${LANG_ROUTES[lang]}`;
+
 /** Open Graph usa guion bajo: "en_US", no "en-US". */
 export const ogLocale = (lang: Lang) => LOCALES[lang].replace('-', '_');
 

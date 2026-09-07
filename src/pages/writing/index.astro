@@ -7,7 +7,7 @@
  * portada aquí no enseñaba nada nuevo. La home promociona, el índice lista.
  */
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import CategoryNav from '../../components/CategoryNav.astro';
+import WritingNav from '../../components/WritingNav.astro';
 import PostList from '../../components/PostList.astro';
 import { getPosts } from '../../lib/posts';
 
@@ -23,7 +23,7 @@ const posts = await getPosts();
     <h1>Writing</h1>
   </header>
 
-  <CategoryNav />
+  <WritingNav />
 
   {
     posts.length > 0 ? (

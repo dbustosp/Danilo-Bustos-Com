@@ -1,0 +1,85 @@
+---
+/**
+ * Los filtros del blog, en dos filas: categoría e idioma.
+ *
+ * Los dos ejes son independientes: elegir uno reinicia el otro. Cruzarlos
+ * daría seis páginas más, casi todas vacías al volumen actual, y no vale
+ * ese precio hasta que haya ensayos de sobra.
+ *
+ * "All" es el reinicio de ambos: /writing sin filtrar nada.
+ */
+import { CATEGORIES, CATEGORY_IDS, categoryUrl, type CategoryId } from '../lib/categories';
+import { LANG_IDS, LANG_LABELS, langUrl, type Lang } from '../lib/i18n';
+
+interface Props {
+  category?: CategoryId;
+  lang?: Lang;
+}
+
+const { category, lang } = Astro.props;
+const sinFiltrar = !category && !lang;
+---
+
+<nav aria-label="Filter essays" class="writing-nav">
+  <ul>
+    <li>
+      <a href="/writing" class="link-quiet" aria-current={sinFiltrar ? 'page' : undefined}>All</a>
+    </li>
+    {
+      CATEGORY_IDS.map((id) => (
+        <li>
+          <a href={categoryUrl(id)} class="link-quiet" aria-current={id === category ? 'page' : undefined}>
+            {CATEGORIES[id].label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <ul class="langs">
+    {
+      LANG_IDS.map((id) => (
+        <li>
+          {/* Cada nombre lleva su propio lang: "Español" no se lee en inglés. */}
+          <a href={langUrl(id)} class="link-quiet" lang={id} aria-current={id === lang ? 'page' : undefined}>
+            {LANG_LABELS[id]}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<style>
+  .writing-nav {
+    margin-bottom: var(--space-4);
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.9375rem;
+  }
+
+  /* Segundo eje: separado del primero, pero del mismo bloque. */
+  .langs {
+    margin-top: 0.4rem;
+  }
+
+  a {
+    color: var(--muted);
+  }
+
+  a:hover,
+  a[aria-current='page'] {
+    color: var(--text);
+  }
+
+  a[aria-current='page'] {
+    text-decoration-color: currentColor;
+  }
+</style>

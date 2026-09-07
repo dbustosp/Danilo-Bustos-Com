@@ -7,7 +7,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { CATEGORIES, type CategoryId } from '../lib/categories';
 import { getPostsByCategory } from '../lib/posts';
-import CategoryNav from './CategoryNav.astro';
+import WritingNav from './WritingNav.astro';
 import PostList from './PostList.astro';
 
 interface Props {
@@ -24,6 +24,6 @@ const posts = await getPostsByCategory(category);
     <h1>{meta.label}</h1>
     <p>{meta.description}</p>
   </header>
-  <CategoryNav current={category} />
+  <WritingNav {category} />
   {posts.length > 0 ? <PostList posts={posts} /> : <p class="muted">No essays in this category yet.</p>}
 </BaseLayout>

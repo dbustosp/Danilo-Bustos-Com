@@ -1,0 +1,40 @@
+---
+/**
+ * Índice de un idioma: los ensayos escritos en él, en orden cronológico.
+ * Las dos páginas (/writing/english y /writing/espanol) son envoltorios
+ * de una línea sobre este componente, igual que las de categoría.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import WritingNav from './WritingNav.astro';
+import PostList from './PostList.astro';
+import { getPostsByLang } from '../lib/posts';
+import { LANG_LABELS, type Lang } from '../lib/i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const posts = await getPostsByLang(lang);
+
+/* En inglés las dos: el título se nombra en su idioma, el sitio explica en el suyo. */
+const DESCRIPTIONS: Record<Lang, string> = {
+  en: 'Essays written in English.',
+  es: 'Essays written in Spanish.',
+};
+---
+
+<BaseLayout title={LANG_LABELS[lang]} description={DESCRIPTIONS[lang]} image="/og/writing.png">
+  <header class="page-header">
+    <h1 lang={lang}>{LANG_LABELS[lang]}</h1>
+    <p>{DESCRIPTIONS[lang]}</p>
+  </header>
+  <WritingNav {lang} />
+  {
+    posts.length > 0 ? (
+      <PostList posts={posts} />
+    ) : (
+      <p class="muted">No essays in this language yet.</p>
+    )
+  }
+</BaseLayout>

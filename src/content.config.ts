@@ -21,6 +21,8 @@ const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const RESERVED_SLUGS = new Set([
   ...CATEGORY_IDS,
   'about',
+  'english',
+  'espanol',
   'default', // imagen Open Graph por defecto (/og/default.png)
   'index',
   'lab',
@@ -61,7 +63,7 @@ const writing = defineCollection({
     updated: z.coerce.date().optional(),
     /** Una de las tres categorías: engineering | enterprise | notes. */
     category: z.enum(CATEGORY_IDS),
-    /** Destacado en la home y arriba del índice. Se rota desde aquí, no desde el código. */
+    /** Sale en la portada. El índice no distingue destacados. Se rota desde aquí. */
     featured: z.boolean().default(false),
     /** Borrador: visible en desarrollo, excluido del build de producción. */
     draft: z.boolean().default(false),
