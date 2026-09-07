@@ -8,6 +8,7 @@
  */
 import { Font } from 'astro:assets';
 import { SITE } from '../config/site';
+import type { Lang } from '../lib/i18n';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Seo, { type ArticleMeta } from '../components/Seo.astro';
@@ -16,6 +17,8 @@ import Analytics from '@vercel/analytics/astro';
 import '../styles/global.css';
 
 interface Props {
+  /** Idioma de la página. Un ensayo declara el suyo; el resto del sitio es inglés. */
+  lang?: Lang;
   /** Título de la pestaña. Se le añade el nombre del sitio salvo en la home. */
   title: string;
   /** Descripción propia de la página. Nunca heredada por defecto. */
@@ -33,6 +36,7 @@ interface Props {
 }
 
 const {
+  lang = SITE.lang,
   title,
   description,
   image = '/og/default.png',
@@ -48,12 +52,12 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
-<html lang={SITE.lang}>
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{pageTitle}</title>
-    <Seo {title} {description} {canonical} {image} {imageAlt} {type} {article} {jsonLd} {noindex} />
+    <Seo {lang} {title} {description} {canonical} {image} {imageAlt} {type} {article} {jsonLd} {noindex} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="alternate" type="application/rss+xml" title={`${SITE.name} — RSS`} href="/rss.xml" />
     <link rel="sitemap" href="/sitemap-index.xml" />
@@ -64,7 +68,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <slot name="head" />
   </head>
   <body>
-    <a href="#content" class="skip-link">Skip to content</a>
+    <a href="#content" class="skip-link" lang={SITE.lang}>Skip to content</a>
     <Header />
     <main id="content" class="container">
       <slot />

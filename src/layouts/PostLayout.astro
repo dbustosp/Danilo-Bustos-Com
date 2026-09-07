@@ -7,6 +7,7 @@ import BaseLayout from './BaseLayout.astro';
 import Mermaid from '../components/Mermaid.astro';
 import { CATEGORIES, categoryUrl } from '../lib/categories';
 import { formatDate, isoDate } from '../lib/dates';
+import { ui } from '../lib/i18n';
 import type { Post } from '../lib/posts';
 import { articleJsonLd } from '../lib/jsonld';
 
@@ -18,26 +19,14 @@ const { post } = Astro.props;
 const { title, description, date, updated, category, lang, origin, draft } = post.data;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const image = `/og/${post.id}.png`;
-const article = { published: date, modified: updated, section: CATEGORIES[category].label, lang };
+const article = { published: date, modified: updated, section: CATEGORIES[category].label };
 
 /* Microcopia alrededor del ensayo, en el idioma del ensayo. */
-const t =
-  lang === 'en'
-    ? {
-        updated: 'Updated on',
-        origin: 'A shorter version was first published on',
-        back: 'All writing',
-        draft: 'Draft',
-      }
-    : {
-        updated: 'Actualizado el',
-        origin: 'Una versión más breve se publicó primero en',
-        back: 'Todos los escritos',
-        draft: 'Borrador',
-      };
+const t = ui(lang);
 ---
 
 <BaseLayout
+  {lang}
   title={title}
   description={description}
   type="article"
@@ -45,7 +34,7 @@ const t =
   {image}
   jsonLd={[articleJsonLd(post, canonical, new URL(image, Astro.site))]}
 >
-  <article class="post" lang={lang}>
+  <article class="post">
     <header class="post-header">
       <p class="meta small muted">
         <a href={categoryUrl(category)} class="link-quiet">{CATEGORIES[category].label}</a>

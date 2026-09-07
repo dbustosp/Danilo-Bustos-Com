@@ -8,15 +8,17 @@
  */
 import { SITE } from '../config/site';
 import { isoDate } from '../lib/dates';
+import { ogLocale, type Lang } from '../lib/i18n';
 
 export interface ArticleMeta {
   published: Date;
   modified?: Date;
   section: string;
-  lang: string;
 }
 
 interface Props {
+  /** Idioma de la página: decide el og:locale. */
+  lang?: Lang;
   /** Título para redes y buscadores, sin el sufijo del sitio. */
   title: string;
   description: string;
@@ -31,6 +33,7 @@ interface Props {
 }
 
 const {
+  lang = SITE.lang,
   title,
   description,
   canonical,
@@ -51,7 +54,7 @@ const imageUrl = image ? new URL(image, Astro.site) : undefined;
 
 <meta property="og:type" content={type} />
 <meta property="og:site_name" content={SITE.name} />
-<meta property="og:locale" content={SITE.locale} />
+<meta property="og:locale" content={ogLocale(lang)} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonical} />

@@ -1,15 +1,11 @@
 /**
  * Fechas legibles. Se formatean según el idioma del contenido.
  */
+import { LOCALES, type Lang } from './i18n';
 
-const LOCALES: Record<string, string> = {
-  es: 'es-CL',
-  en: 'en-US',
-};
-
-/** "6 de septiembre de 2026" / "September 6, 2026" */
-export function formatDate(date: Date, lang = 'es'): string {
-  return new Intl.DateTimeFormat(LOCALES[lang] ?? lang, {
+/** "September 6, 2026" / "6 de septiembre de 2026" */
+export function formatDate(date: Date, lang: Lang = 'en'): string {
+  return new Intl.DateTimeFormat(LOCALES[lang], {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -17,9 +13,9 @@ export function formatDate(date: Date, lang = 'es'): string {
   }).format(date);
 }
 
-/** "sep 2026" / "Sep 2026", para las listas del índice. */
-export function formatMonthYear(date: Date, lang = 'es'): string {
-  return new Intl.DateTimeFormat(LOCALES[lang] ?? lang, {
+/** "Sep 2026" / "sep 2026", para las listas del índice. */
+export function formatMonthYear(date: Date, lang: Lang = 'en'): string {
+  return new Intl.DateTimeFormat(LOCALES[lang], {
     year: 'numeric',
     month: 'short',
     timeZone: 'UTC',

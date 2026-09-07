@@ -20,7 +20,10 @@ export async function GET(context: APIContext) {
       pubDate: post.data.date,
       link: postUrl(post),
       categories: [CATEGORIES[post.data.category].label],
+      /* El canal es inglés; un ensayo en español se anuncia por ítem. */
+      customData: `<dc:language>${post.data.lang}</dc:language>`,
     })),
+    xmlns: { dc: 'http://purl.org/dc/elements/1.1/' },
     customData: `<language>${SITE.lang}</language>`,
     trailingSlash: false,
   });

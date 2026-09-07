@@ -5,8 +5,10 @@
  */
 import type { Post } from '../lib/posts';
 import { postUrl } from '../lib/posts';
+import { SITE } from '../config/site';
 import { CATEGORIES, categoryUrl } from '../lib/categories';
 import { formatMonthYear, isoDate } from '../lib/dates';
+import { ui } from '../lib/i18n';
 
 interface Props {
   posts: Post[];
@@ -32,8 +34,12 @@ const { posts } = Astro.props;
             {CATEGORIES[post.data.category].label}
           </a>
           {' · '}
-          <time datetime={isoDate(post.data.date)}>{formatMonthYear(post.data.date)}</time>
-          {post.data.draft && <span class="draft"> · borrador</span>}
+          <time datetime={isoDate(post.data.date)}>
+            {formatMonthYear(post.data.date, post.data.lang)}
+          </time>
+          {/* El sitio es en inglés: solo se marca el ensayo que no lo está. */}
+          {post.data.lang !== SITE.lang && <span class="lang"> · {ui(post.data.lang).langLabel}</span>}
+          {post.data.draft && <span class="draft"> · {ui(post.data.lang).draft}</span>}
         </p>
       </li>
     ))
@@ -62,6 +68,10 @@ const { posts } = Astro.props;
 
   .meta {
     margin-top: 0.5rem;
+  }
+
+  .lang {
+    letter-spacing: 0.04em;
   }
 
   .draft {
