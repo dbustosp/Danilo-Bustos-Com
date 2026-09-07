@@ -120,7 +120,6 @@ export const ORGS: Org[] = [
         summary:
           'Implemented the WAND algorithm, scheduling logic, and a C++ ML model to predict online query response times for vertical search engines.',
       },
-      { title: 'Student Researcher', start: new Date('2013-01-01'), end: new Date('2014-12-01') },
     ],
   },
 ];
