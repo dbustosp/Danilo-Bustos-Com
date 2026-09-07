@@ -49,8 +49,10 @@ const essays = featured.length > 0 ? featured : (await getPosts()).slice(0, 4);
 </BaseLayout>
 
 <style>
+  /* Separados del tagline, pero sin soltarse hacia la sección siguiente,
+     que está a --space-6. */
   .tagline + :global(ul) {
-    margin-top: var(--space-3);
+    margin-top: var(--space-4);
   }
 
   .tagline {
