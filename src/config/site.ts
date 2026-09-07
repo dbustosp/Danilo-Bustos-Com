@@ -61,6 +61,7 @@ export const SITE = {
 
   /** Navegación principal. El CV vive en /cv pero no se destaca aquí. */
   nav: [
+    { href: '/', label: 'Home' },
     { href: '/writing', label: 'Writing' },
     { href: '/now', label: 'Now' },
     { href: '/about', label: 'About' },
