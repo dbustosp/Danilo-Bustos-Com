@@ -5,6 +5,7 @@
  */
 import BaseLayout from './BaseLayout.astro';
 import Mermaid from '../components/Mermaid.astro';
+import { SITE } from '../config/site';
 import { CATEGORIES, categoryUrl } from '../lib/categories';
 import { formatDate, isoDate } from '../lib/dates';
 import { ui } from '../lib/i18n';
@@ -62,6 +63,14 @@ const t = ui(lang);
         origin && (
           <p>
             {t.origin} <a href={origin.url}>{origin.label}</a>.
+          </p>
+        )
+      }
+      {/* Enlace hacia fuera, nunca un formulario. Vacío mientras no exista. */}
+      {
+        SITE.newsletter && (
+          <p>
+            {t.newsletter} <a href={SITE.newsletter}>Substack</a>.
           </p>
         )
       }

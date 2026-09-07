@@ -208,7 +208,22 @@ hora siguiente para responder comentarios.
 
 **Cross-posting:** LinkedIn primero; el resto una semana después. Medium
 solo con su herramienta de importación, para que el canonical apunte aquí.
-Substack y Dev.to, descartados.
+Dev.to, descartado.
+
+**Newsletter (Substack).** Decisión revisada: Substack estaba descartado como
+sitio donde *publicar*, y eso no cambia — la copia canónica es este blog y el
+canonical apunta aquí. Lo que sí existe es Substack como lista de correo: un
+canal propio, sin algoritmo de por medio, para avisar de un ensayo nuevo.
+
+Cómo se enlaza, y esto no se negocia: **un enlace hacia fuera, nunca un
+formulario.** La captura del correo ocurre en Substack, no en el sitio, así
+que §9 sigue intacto. Vive en `SITE.newsletter` (`src/config/site.ts`); vacío
+significa que no se muestra en ninguna parte, igual que `social.twitter` y
+`email`. Cuando tenga URL aparece en el pie y al final de cada ensayo, en el
+idioma del ensayo (`ui()` en `src/lib/i18n.ts`).
+
+RSS se queda y no compite con esto: sirve a los lectores de feeds, no es un
+canal de distribución por sí solo.
 
 ## 9. Diseño: lo que no se rompe
 
@@ -218,7 +233,9 @@ Substack y Dev.to, descartados.
 - Tipografía: `--font-heading` (Newsreader) y `--font-body` (Inter). Cambiar
   la fuente es cambiar la variable en `src/styles/global.css`.
 - Modo claro y oscuro; todo par texto/fondo por encima de AA.
-- Sin animaciones decorativas. Sin pop-ups ni captura de correos.
+- Sin animaciones decorativas. Sin pop-ups ni captura de correos: el
+  newsletter es un enlace de texto hacia Substack, nunca un formulario
+  embebido ni una caja (ver §8).
 - `/lab` es desechable: cuando haya decisión de fuente y acento, borrar la
   carpeta y las familias "laboratorio" de `astro.config.mjs` y `package.json`.
 

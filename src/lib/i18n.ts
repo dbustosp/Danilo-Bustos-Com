@@ -25,6 +25,7 @@ export function ui(lang: Lang) {
         origin: 'Una versión más breve se publicó primero en',
         back: 'Todos los escritos',
         draft: 'Borrador',
+        newsletter: 'Recibe los ensayos nuevos por correo:',
         langLabel: 'ES',
       }
     : {
@@ -32,6 +33,7 @@ export function ui(lang: Lang) {
         origin: 'A shorter version was first published on',
         back: 'All writing',
         draft: 'Draft',
+        newsletter: 'Get new essays by email:',
         langLabel: 'EN',
       };
 }

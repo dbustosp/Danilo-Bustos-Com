@@ -48,6 +48,14 @@ export const SITE = {
    */
   email: '',
 
+  /**
+   * Newsletter en Substack. Vacío mientras no exista: como los enlaces
+   * sociales, un valor vacío no se muestra en ninguna parte. Es un enlace
+   * hacia fuera, nunca un formulario: la captura del correo ocurre en
+   * Substack, no aquí (§9: sin pop-ups ni captura de correos).
+   */
+  newsletter: '',
+
   /** Dirección de copy de la sección "Ahora" en la home. */
   now: 'Construyo los sistemas que hacen que la inteligencia artificial funcione dentro de una empresa real.',
 
