@@ -1,7 +1,13 @@
 ---
 /**
- * Los ensayos definitorios. Es lo primero que ve un visitante nuevo, así que
- * aquí sí va la descripción: título, una o dos frases, categoría y fecha.
+ * Los ensayos definitorios, en clave de portada: antetítulo con la
+ * categoría, titular grande y una entradilla. Es lo primero que ve un
+ * visitante nuevo.
+ *
+ * La jerarquía la hacen la escala y el aire, no una caja (§9): del
+ * antetítulo al titular hay un salto real —0.8125rem a 1.875rem— y entre
+ * entradas hay --space-5. Es lo que separa una portada de una lista, y lo
+ * que distingue esto del índice compacto de /writing.
  */
 import type { Post } from '../lib/posts';
 import { postUrl } from '../lib/posts';
@@ -21,15 +27,9 @@ const { posts } = Astro.props;
   {
     posts.map((post) => (
       <li>
-        <h3>
-          <a href={postUrl(post)} class="link-quiet" lang={post.data.lang}>
-            {post.data.title}
-          </a>
-        </h3>
-        <p class="description" lang={post.data.lang}>
-          {post.data.description}
-        </p>
-        <p class="meta small muted">
+        {/* La categoría va arriba: en una audiencia mixta, saber si algo es
+            técnico o personal tiene que llegar antes que el titular. */}
+        <p class="eyebrow section-label">
           <a href={categoryUrl(post.data.category)} class="link-quiet">
             {CATEGORIES[post.data.category].label}
           </a>
@@ -37,9 +37,18 @@ const { posts } = Astro.props;
           <time datetime={isoDate(post.data.date)}>
             {formatMonthYear(post.data.date, post.data.lang)}
           </time>
-          {/* El sitio es en inglés: solo se marca el ensayo que no lo está. */}
-          {post.data.lang !== SITE.lang && <span class="lang"> · {ui(post.data.lang).langLabel}</span>}
+          {post.data.lang !== SITE.lang && <span> · {ui(post.data.lang).langLabel}</span>}
           {post.data.draft && <span class="draft"> · {ui(post.data.lang).draft}</span>}
+        </p>
+
+        <h3>
+          <a href={postUrl(post)} class="link-quiet" lang={post.data.lang}>
+            {post.data.title}
+          </a>
+        </h3>
+
+        <p class="description" lang={post.data.lang}>
+          {post.data.description}
         </p>
       </li>
     ))
@@ -54,27 +63,37 @@ const { posts } = Astro.props;
   }
 
   li + li {
-    margin-top: var(--space-4);
+    margin-top: var(--space-5);
+  }
+
+  /*
+   * Hereda .section-label pero baja de peso: el rótulo de la sección
+   * ("FEATURED ESSAYS") y el antetítulo de cada entrada quedan a un palmo,
+   * y con el mismo grosor se leerían como el mismo nivel.
+   */
+  .eyebrow {
+    font-weight: 400;
+    margin-bottom: 0.4rem;
   }
 
   h3 {
-    font-size: 1.5rem;
+    font-size: 1.875rem;
+    max-width: 18em;
   }
 
   .description {
-    margin-top: 0.5rem;
-    max-width: 36em;
-  }
-
-  .meta {
-    margin-top: 0.5rem;
-  }
-
-  .lang {
-    letter-spacing: 0.04em;
+    margin-top: 0.75rem;
+    max-width: 34em;
   }
 
   .draft {
     font-style: italic;
+    text-transform: none;
+  }
+
+  @media (max-width: 40rem) {
+    h3 {
+      font-size: 1.5rem;
+    }
   }
 </style>
