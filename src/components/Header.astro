@@ -1,55 +1,112 @@
 ---
 /**
- * Cabecera: solo navegación, alineada a la derecha. Sin logotipo, sin
- * eslogan y sin el nombre repetido —la home ya lo lleva como título, y en
- * el resto de páginas el nombre vive en el <title> de la pestaña y en el
- * pie. Lo que queda es lo único que hace falta: a dónde se puede ir.
+ * Cabecera de periódico: el nombre como cabecera, una línea de territorio
+ * debajo, la navegación y el retrato. Se repite igual en todas las páginas,
+ * así que es la home la que renuncia a su encabezado, no al revés.
+ *
+ * La regla inferior es la única excepción a "sin bordes" (§9): es lo que
+ * separa la cabecera del contenido y lo que hace que se lea como cabecera.
+ * Usa --rule, el token que ya existe para hr y tablas.
  */
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import { SITE } from '../config/site';
 import ThemeToggle from './ThemeToggle.astro';
 
+/*
+ * El retrato es opcional: si no existe el archivo, glob devuelve {} y la
+ * cabecera se dibuja sin él. Basta con dejar src/assets/avatar.jpg para que
+ * aparezca, ya optimizado.
+ */
+const portraits = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/avatar.{jpg,jpeg,png,webp,avif}',
+  { eager: true },
+);
+const portrait = Object.values(portraits)[0]?.default;
+
 const path = Astro.url.pathname;
+const isHome = path === '/';
 
 /*
  * "/" solo coincide consigo mismo: con startsWith, la raíz sería la página
  * actual en todas las rutas del sitio.
  */
 const isCurrent = (href: string) =>
-  href === '/' ? path === '/' : path === href || path.startsWith(`${href}/`);
+  href === '/' ? isHome : path === href || path.startsWith(`${href}/`);
 ---
 
-<header class="site-header container" lang={SITE.lang}>
-  <nav aria-label="Primary">
-    <ul>
-      {
-        SITE.nav.map((item) => (
-          <li>
-            <a
-              href={item.href}
-              class="link-quiet"
-              aria-current={isCurrent(item.href) ? 'page' : undefined}
-            >
-              {item.label}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-    <ThemeToggle />
-  </nav>
+<header class:list={['site-header', 'container', { 'has-portrait': portrait }]} lang={SITE.lang}>
+  <div class="masthead">
+    {/* El nombre es el h1 solo en la home; en el resto lo es el título de la página. */}
+    {
+      isHome ? (
+        <h1 class="name">{SITE.name}</h1>
+      ) : (
+        <p class="name">
+          <a href="/" class="link-quiet">
+            {SITE.name}
+          </a>
+        </p>
+      )
+    }
+    <p class="descriptor small muted">{SITE.domains}</p>
+
+    <nav aria-label="Primary">
+      <ul>
+        {
+          SITE.nav.map((item) => (
+            <li>
+              <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <ThemeToggle />
+    </nav>
+  </div>
+
+  {
+    portrait && (
+      <Image src={portrait} alt={SITE.name} width={220} height={220} class="portrait" loading="eager" />
+    )
+  }
 </header>
 
 <style>
   .site-header {
-    display: flex;
-    justify-content: flex-end;
-    padding-block: var(--space-3);
+    display: grid;
+    /* La segunda columna solo existe si hay retrato; si no, sobraría el hueco. */
+    grid-template-columns: 1fr;
+    align-items: center;
+    gap: var(--space-3);
+    padding-block: var(--space-4) var(--space-3);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .site-header.has-portrait {
+    grid-template-columns: 1fr auto;
+  }
+
+  .name {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: var(--leading-heading);
+    letter-spacing: -0.015em;
+  }
+
+  .descriptor {
+    margin-top: 0.15rem;
+    max-width: 34em;
   }
 
   nav {
     display: flex;
     align-items: center;
     gap: var(--space-3);
+    margin-top: var(--space-2);
   }
 
   ul {
@@ -61,20 +118,35 @@ const isCurrent = (href: string) =>
     list-style: none;
   }
 
+  /* Enlaces de verdad: acento y subrayado, que es lo que §9 reserva para ellos. */
   nav a {
     font-size: 0.9375rem;
-    color: var(--muted);
+    text-transform: lowercase;
   }
 
-  nav a:hover,
   nav a[aria-current='page'] {
-    color: var(--text);
+    text-decoration-color: currentColor;
+  }
+
+  .portrait {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
   }
 
   @media (max-width: 40rem) {
-    nav {
-      width: 100%;
-      justify-content: space-between;
+    .site-header {
+      gap: var(--space-2);
+    }
+
+    .name {
+      font-size: 1.625rem;
+    }
+
+    .portrait {
+      width: 72px;
+      height: 72px;
     }
   }
 </style>

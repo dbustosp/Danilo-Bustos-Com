@@ -230,7 +230,16 @@ canal de distribución por sí solo.
 
 - Editorial, tipo revista. Muchísimo espacio en blanco.
 - **Sin bordes, sin sombras, sin cajas.** Jerarquía solo con tamaño y espacio.
-- Un único color de acento (`--accent`), solo para enlaces.
+  Una única excepción, deliberada: la regla bajo la cabecera (`--rule`, el
+  mismo token de `hr` y las tablas). Es lo que separa la cabecera del cuerpo
+  y lo que hace que se lea como cabecera de periódico. No se añaden más.
+- Un único color de acento (`--accent`), solo para enlaces. Los del menú lo
+  son: van en acento y subrayados, no apagados.
+- **La cabecera es la misma en todas las páginas**: nombre, línea de
+  territorio (`SITE.domains`), navegación y retrato. Por eso la home no lleva
+  encabezado propio y `/resume` no repite el nombre — sería duplicarlo justo
+  debajo. El retrato vive en `src/assets/avatar.{jpg,png,webp}`; si el archivo
+  no está, la cabecera se dibuja sin él y no hay que tocar código.
 - Tipografía: `--font-heading` (Newsreader) y `--font-body` (Inter). Cambiar
   la fuente es cambiar la variable en `src/styles/global.css`.
 - Modo claro y oscuro; todo par texto/fondo por encima de AA.

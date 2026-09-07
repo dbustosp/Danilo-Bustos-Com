@@ -16,7 +16,7 @@ export const SITE = {
   locale: 'en_US',
 
   /**
-   * Título del encabezado de la home: nombre + tres dominios.
+   * Línea de territorio bajo el nombre, en la cabecera de todas las páginas.
    * Posicionamiento por territorio, sin verbo y sin promesa.
    */
   domains: 'Information retrieval, artificial intelligence, and distributed systems',
