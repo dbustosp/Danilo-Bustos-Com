@@ -6,7 +6,6 @@
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import FeaturedList from '../components/FeaturedList.astro';
-import SocialIcons from '../components/SocialIcons.astro';
 import { SITE, SITE_TITLE } from '../config/site';
 import { getFeaturedPosts, getPosts } from '../lib/posts';
 import { personJsonLd, websiteJsonLd } from '../lib/jsonld';
@@ -19,7 +18,6 @@ const essays = featured.length > 0 ? featured : (await getPosts()).slice(0, 4);
 <BaseLayout title={SITE_TITLE} description={SITE.shortBio} jsonLd={[personJsonLd(), websiteJsonLd()]}>
   {/* Sin encabezado propio: el nombre y el territorio ya los lleva la cabecera. */}
   <p class="tagline">{SITE.tagline}</p>
-  <SocialIcons />
 
   {
     essays.length > 0 && (
@@ -49,12 +47,6 @@ const essays = featured.length > 0 ? featured : (await getPosts()).slice(0, 4);
 </BaseLayout>
 
 <style>
-  /* Separados del tagline, pero sin soltarse hacia la sección siguiente,
-     que está a --space-6. */
-  .tagline + :global(ul) {
-    margin-top: var(--space-4);
-  }
-
   .tagline {
     font-family: var(--font-heading);
     font-size: 1.375rem;
