@@ -27,9 +27,10 @@ src/config/site.ts          identidad: nombre, URL, enlaces, navegación, copy d
 src/content.config.ts       esquema del frontmatter (la fuente de verdad)
 src/content/writing/        los ensayos, uno por archivo; el nombre es el slug
 src/content/writing/_plantilla.md   plantilla para copiar
-src/content/pages/          cuerpo de /about, /now y /cv
+src/content/pages/          cuerpo de /about, /now y /resume
 src/lib/categories.ts       las tres categorías y su audiencia
 src/lib/posts.ts            consultas: orden, borradores, destacados
+src/lib/resume.ts           la trayectoria, como datos; alimenta el timeline de /resume
 src/styles/global.css       sistema de diseño: tokens, tipografía, prosa
 src/layouts/, src/components/, src/pages/   el sitio
 src/pages/lab/              páginas de trabajo (tipografía, acento, prosa); desechables
@@ -47,7 +48,7 @@ Solo minúsculas, dígitos y guiones. Sin fechas, sin categorías, sin acentos
 (`ñ` → `n`). El slug va en el idioma del ensayo: `eleven-years-at-equifax.md`
 para uno en inglés, `de-puerto-natales-a-google.md` para uno en español. El
 build rechaza slugs
-inválidos y los que chocan con rutas del sitio (`about`, `now`, `cv`,
+inválidos y los que chocan con rutas del sitio (`about`, `now`, `resume`,
 `writing`, `lab`, `og`, `rss`, `default`, `index` y los nombres de las
 categorías). Un slug publicado no se cambia nunca.
 
