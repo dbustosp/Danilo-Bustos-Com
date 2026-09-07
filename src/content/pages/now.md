@@ -1,6 +1,6 @@
 ---
-title: 'Ahora'
-description: 'En qué está trabajando Danilo Bustos ahora mismo: agentes autónomos en el enterprise regulado y la llegada a Google Cloud AI.'
+title: 'Now'
+description: 'What Danilo Bustos is working on right now: autonomous agents in the regulated enterprise, and the move to Google Cloud AI.'
 updated: 2026-09-06
 ---
 
@@ -13,8 +13,8 @@ updated: 2026-09-06
   Danilo los reescribe en su propia voz cuando quiera; el sitio funciona igual.
 -->
 
-Construyo los sistemas que hacen que la inteligencia artificial funcione dentro de una empresa real.
+I build the systems that make artificial intelligence work inside a real company.
 
-Hoy eso significa liderar la Agentic Factory en Equifax: la plataforma que estandariza cómo se construyen, despliegan y operan agentes autónomos bajo restricciones regulatorias.
+Today that means leading the Agentic Factory at Equifax: the platform that standardizes how autonomous agents are built, deployed, and operated under regulatory constraints.
 
-En octubre de 2026 me incorporo a Google Cloud AI como Staff Forward Deployed Engineer, para ayudar a las grandes empresas del mundo a adoptar inteligencia artificial de verdad.
+In October 2026 I join Google Cloud AI as a Staff Forward Deployed Engineer, building and deploying artificial intelligence inside the largest enterprises in the world.

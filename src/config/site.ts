@@ -27,7 +27,7 @@ export const SITE = {
 
   /** Bio corta: se usa como descripción por defecto y en la sección About de la home. */
   shortBio:
-    'Quince años en la intersección de recuperación de información, inteligencia artificial y sistemas distribuidos.',
+    'Fifteen years at the intersection of information retrieval, artificial intelligence, and distributed systems.',
 
   /** Repositorio público del sitio. Se enlaza desde el pie. */
   repo: 'https://github.com/dbustosp/Danilo-Bustos-Com',
