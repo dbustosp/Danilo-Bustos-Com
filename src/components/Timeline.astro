@@ -1,0 +1,98 @@
+---
+/**
+ * La trayectoria, en dos columnas: años a la izquierda, cargo a la derecha.
+ *
+ * Sin raíl, sin puntos y sin tarjetas. El canal que separa las dos columnas
+ * lo hace el aire y la alineación —fechas a la derecha contra contenido a la
+ * izquierda—, no una línea dibujada: §9 pide jerarquía solo con tamaño y
+ * espacio. Las medidas son las de PostList, ensanchadas para que quepa un
+ * rango de años.
+ */
+import type { Role } from '../lib/resume';
+import { formatMonthYear, formatYear, isoDate } from '../lib/dates';
+import { SITE } from '../config/site';
+
+interface Props {
+  roles: Role[];
+}
+
+const { roles } = Astro.props;
+
+/* El año basta para un rango cerrado; el cargo actual gana el mes. */
+const startLabel = (role: Role) =>
+  role.end ? formatYear(role.start, SITE.lang) : formatMonthYear(role.start, SITE.lang);
+---
+
+<ol class="timeline">
+  {
+    roles.map((role) => (
+      <li>
+        <p class="dates">
+          <time datetime={isoDate(role.start)}>{startLabel(role)}</time>
+          {/* La raya queda suelta cuando el cargo sigue abierto. */}
+          {' – '}
+          {role.end && <time datetime={isoDate(role.end)}>{formatYear(role.end, SITE.lang)}</time>}
+        </p>
+        <div>
+          <p class="org">{role.org}</p>
+          {role.title && <p class="role muted">{role.title}</p>}
+          {role.summary && <p class="summary">{role.summary}</p>}
+        </div>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    gap: var(--space-2);
+    align-items: baseline;
+  }
+
+  li + li {
+    margin-top: var(--space-4);
+  }
+
+  .dates {
+    font-family: var(--font-heading);
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .org {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+
+  .role {
+    margin-top: 0.15rem;
+  }
+
+  .summary {
+    margin-top: 0.5rem;
+    max-width: 36em;
+  }
+
+  @media (max-width: 40rem) {
+    li {
+      grid-template-columns: 1fr;
+      gap: 0.1rem;
+    }
+
+    .dates {
+      text-align: left;
+    }
+  }
+</style>

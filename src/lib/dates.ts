@@ -24,5 +24,10 @@ export function formatMonthYear(date: Date, lang: Lang = 'en'): string {
     .replace('.', '');
 }
 
+/** "2026", para la columna de fechas del timeline. */
+export function formatYear(date: Date, lang: Lang = 'en'): string {
+  return new Intl.DateTimeFormat(LOCALES[lang], { year: 'numeric', timeZone: 'UTC' }).format(date);
+}
+
 /** YYYY-MM-DD, para atributos datetime y datos estructurados. */
 export const isoDate = (date: Date) => date.toISOString().slice(0, 10);
