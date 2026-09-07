@@ -69,7 +69,16 @@ const isCurrent = (href: string) =>
 
   {
     portrait && (
-      <Image src={portrait} alt={SITE.name} width={220} height={220} class="portrait" loading="eager" />
+      {/* Está sobre la línea de flotación en todas las páginas: se pide con prioridad. */}
+      <Image
+        src={portrait}
+        alt={SITE.name}
+        width={220}
+        height={220}
+        class="portrait"
+        loading="eager"
+        fetchpriority="high"
+      />
     )
   }
 </header>
