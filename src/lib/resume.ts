@@ -98,7 +98,7 @@ export const ORGS: Org[] = [
         start: new Date('2015-06-01'),
         end: new Date('2017-09-01'),
         summary:
-          'Built the Hadoop platform for the business units in the US, Canada and Australia, including four and a half months in Australia standing up the platform for Veda.',
+          'Built the Hadoop platform for the business units in the US, Canada and Australia, including five months in Australia standing up the platform for Veda.',
       },
     ],
   },
