@@ -40,8 +40,8 @@
   --bg: #faf7f2;
   --text: #1c1b19;
   --muted: #6b665f;
-  --accent: #2b4a6f; /* azul marino apagado: solo enlaces */
-  --accent-hover: #1b3149; /* el mismo azul, afianzado, al pasar por encima */
+  --accent: #1f5f7a; /* azul del Seno de Última Esperanza: solo enlaces */
+  --accent-hover: #143f52; /* el mismo azul, afianzado, al pasar por encima */
   --surface: #f1ede6; /* único fondo secundario: bloques de código */
   --rule: #e3ded5; /* filetes finos: hr y tablas */
   --selection: #dfe7f0;
@@ -59,8 +59,8 @@
     --bg: #171614;
     --text: #e7e2d9;
     --muted: #a19b91;
-    --accent: #9db9db;
-    --accent-hover: #c2d6ec; /* sobre fondo oscuro, "más intenso" es aclarar */
+    --accent: #86bdd4;
+    --accent-hover: #aed4e5; /* sobre fondo oscuro, "más intenso" es aclarar */
     --surface: #211f1c;
     --rule: #33302b;
     --selection: #2b3a4c;
@@ -72,8 +72,8 @@
   --bg: #171614;
   --text: #e7e2d9;
   --muted: #a19b91;
-  --accent: #9db9db;
-  --accent-hover: #c2d6ec; /* sobre fondo oscuro, "más intenso" es aclarar */
+  --accent: #86bdd4;
+  --accent-hover: #aed4e5; /* sobre fondo oscuro, "más intenso" es aclarar */
   --surface: #211f1c;
   --rule: #33302b;
   --selection: #2b3a4c;
@@ -81,11 +81,18 @@
 }
 
 /*
- * Variante patagónica del acento (opcional, ver /lab).
- * Para adoptarla, reemplazar --accent arriba por uno de estos pares.
+ * El acento está decidido: el azul del Seno de Última Esperanza, el fiordo
+ * de Puerto Natales. Es el único color del sitio y ahora significa algo,
+ * porque /about termina ahí y el ensayo de lanzamiento va de ahí a Google.
  *
- *   Azul del Seno de Última Esperanza:  claro #1f5f7a   oscuro #86bdd4
- *   Gris piedra de las Torres del Paine: claro #55606b   oscuro #a9b3bd
+ * Descartados, y por qué:
+ *
+ *   Azul marino #2b4a6f       Contrastaba más (AAA), pero es el azul por
+ *                             defecto de cualquier sitio. No decía nada.
+ *   Gris piedra del Paine     Contra el texto del cuerpo da 1.65 en modo
+ *   #55606b / #a9b3bd         oscuro: un enlace deja de distinguirse de una
+ *                             palabra normal. Como el acento es la única
+ *                             señal de que algo se pulsa, ese gris la anula.
  */
 
 /* ------------------------------------------------------------------ */
