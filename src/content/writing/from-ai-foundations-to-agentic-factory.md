@@ -13,7 +13,7 @@ origin:
 
 *Disclaimer: The opinions expressed in this article are my own and do not represent the views or opinions of my employer, past or present.*
 
-*LinkedIn scored this article as 80% human written.*
+*This article has scored as 80% human written*
 
 For the last 4 years I have been leading the next generation of Cloud AI at Equifax, adopting it in our Enterprise Analytical Platform as a core service and influencing the architecture of others critical platforms. We have also been integrating new AI capabilities to our internal tooling and processes leveraging the ~$3B investment through Equifax Cloud. The last 2 years the focus has become very ambitious and the work we have done is being driven by the following question: How do we standardize the building, deployment, serving and operation of autonomous Agents at scale in a highly regulated industry like financial services?
 
