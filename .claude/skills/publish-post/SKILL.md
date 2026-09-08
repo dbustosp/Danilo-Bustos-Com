@@ -25,7 +25,12 @@ Pregunta (o deduce del contexto) exactamente esto:
 - **Destacado.** ¿Va entre los tres o cuatro definitorios? Si sí, revisa
   cuáles están marcados y propón cuál sale.
 - **Origen.** Si es una migración desde LinkedIn u otro sitio, la URL del
-  original.
+  original. Y en ese caso, **pregunta siempre cuál de los dos caminos**
+  (§8 de `CLAUDE.md`): publicarlo **tal cual**, o **reescribirlo más largo**
+  con más profundidad. No asumas ninguno; los dos son válidos y la decisión
+  es de Danilo. `origin` se rellena en ambos casos, y la corrección de
+  mecánica de §4 se aplica igual: un artículo ya publicado en LinkedIn
+  suele traer erratas reales que aquí sí se arreglan.
 
 ## 2. Crear el archivo
 

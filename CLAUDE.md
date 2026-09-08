@@ -204,8 +204,27 @@ resolver el problema antes de tenerlo.
 
 **Este blog** es la copia canónica: aquí sí hay Markdown, desarrollo largo
 y diagramas. LinkedIn premia la brevedad; el blog premia el desarrollo.
-Al migrar un texto desde LinkedIn no se copia y pega: se reescribe más
-largo, con más profundidad y contexto, y se enlaza el original en `origin`.
+
+**Al migrar desde LinkedIn hay dos caminos, y elige Danilo. Pregúntale
+siempre; no asumas ninguno de los dos.**
+
+- **Tal cual**, con `origin` apuntando al original. Rápido, y a veces es lo
+  correcto: tener el texto publicado vale más que tenerlo perfecto.
+- **Reescrito más largo**, con más profundidad y contexto. Es el que
+  justifica que el blog exista: si aquí dice lo mismo que en LinkedIn, no
+  hay razón para venir.
+
+Los dos son válidos y ninguno es definitivo: un texto migrado tal cual se
+puede desarrollar después, y para eso está el campo `updated`.
+
+Lo que no cambia en ninguno de los dos casos: `origin` se rellena siempre,
+y la corrección de mecánica de §4 se aplica igual. En un artículo de
+LinkedIn ya publicado suele haber erratas reales —verbos omitidos,
+palabras duplicadas— que aquí sí se arreglan.
+
+Precedente: `from-ai-foundations-to-agentic-factory` se publicó tal cual,
+como excepción deliberada, para que el sitio no llegara vacío al inicio en
+Google. Su versión larga sigue pendiente.
 
 **LinkedIn (feed):** cero Markdown, una idea por línea, línea en blanco entre
 bloques, contención con emoji, listas como guiones o flechas, 3 a 5 hashtags
