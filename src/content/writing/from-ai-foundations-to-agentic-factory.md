@@ -13,6 +13,8 @@ origin:
 
 *Disclaimer: The opinions expressed in this article are my own and do not represent the views or opinions of my employer, past or present.*
 
+*LinkedIn scored this article as 80% human written.*
+
 For the last 4 years I have been leading the next generation of Cloud AI at Equifax, adopting it in our Enterprise Analytical Platform as a core service and influencing the architecture of others critical platforms. We have also been integrating new AI capabilities to our internal tooling and processes leveraging the ~$3B investment through Equifax Cloud. The last 2 years the focus has become very ambitious and the work we have done is being driven by the following question: How do we standardize the building, deployment, serving and operation of autonomous Agents at scale in a highly regulated industry like financial services?
 
 In this article I will highlight the learnings we as a team and I as a leader have had in this journey. During Q3 we reached an important milestone: our first autonomous agents running in Production. That milestone is the reason I am writing this article now.
@@ -68,5 +70,3 @@ In our team we spend a significant amount of time socializing what we build by w
 ## Conclusion
 
 This article tries to contribute and express several learnings in our journey building the EFX Agentic Factory. Notice this has not covered the learnings building Autonomous Agents; this has been focused on the platform. I probably missed many other learnings, but these are the ones that were on top of my mind at the moment of writing this article.
-
-This journey has not been even possible without my extraordinary team: Rodrigo Vásquez, Anupama Kasani, Roberto Solar Gallardo, Rafael Soto Gallardo, Miguel Videla Araya, Joaquin Morales, and our leader Shibu Krishnankutty. Partners Pablo Martínez Castro and Pradeep Mamillapalli. And thanks to our sponsors who trust our team to lead this strategic initiative: Kumar Menon, Jamil Farshchi and Harald Schneider.
