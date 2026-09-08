@@ -19,8 +19,6 @@ const fontsource = (pkg) => ({
 
 const newsreader = fontsource('newsreader');
 const inter = fontsource('inter');
-const sourceSerif = fontsource('source-serif-4');
-const fraunces = fontsource('fraunces');
 
 // https://docs.astro.build/en/reference/configuration-reference/
 export default defineConfig({
@@ -46,8 +44,7 @@ export default defineConfig({
   integrations: [
     // Markdown para casi todo; MDX cuando un ensayo necesite un componente.
     mdx(),
-    // Sitemap en /sitemap-index.xml; las páginas de trabajo (/lab) quedan fuera.
-    sitemap({ filter: (page) => !page.includes('/lab') }),
+    sitemap(),
   ],
 
   vite: {
@@ -73,9 +70,6 @@ export default defineConfig({
    * en títulos y cuál en cuerpo. Cambiar la fuente del sitio es cambiar una
    * variable.
    *
-   * Las familias marcadas "laboratorio" solo se cargan en /lab, la página de
-   * prueba para comparar alternativas en pantalla. Se pueden borrar sin más
-   * (aquí, en /lab y en package.json).
    */
   fonts: [
     {
@@ -101,32 +95,6 @@ export default defineConfig({
         variants: [
           { src: [inter.normal], weight: '100 900', style: 'normal' },
           { src: [inter.italic], weight: '100 900', style: 'italic' },
-        ],
-      },
-    },
-    {
-      // Laboratorio: muy institucional y clásica.
-      provider: fontProviders.local(),
-      name: 'Source Serif 4',
-      cssVariable: '--font-source-serif',
-      fallbacks: ['Georgia', 'serif'],
-      options: {
-        variants: [
-          { src: [sourceSerif.normal], weight: '200 900', style: 'normal' },
-          { src: [sourceSerif.italic], weight: '200 900', style: 'italic' },
-        ],
-      },
-    },
-    {
-      // Laboratorio: más carácter y personalidad.
-      provider: fontProviders.local(),
-      name: 'Fraunces',
-      cssVariable: '--font-fraunces',
-      fallbacks: ['Georgia', 'serif'],
-      options: {
-        variants: [
-          { src: [fraunces.normal], weight: '100 900', style: 'normal' },
-          { src: [fraunces.italic], weight: '100 900', style: 'italic' },
         ],
       },
     },

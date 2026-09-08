@@ -25,7 +25,6 @@ const RESERVED_SLUGS = new Set([
   'espanol',
   'default', // imagen Open Graph por defecto (/og/default.png)
   'index',
-  'lab',
   'now',
   'og',
   'resume',

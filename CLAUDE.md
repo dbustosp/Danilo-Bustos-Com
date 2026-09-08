@@ -33,7 +33,6 @@ src/lib/posts.ts            consultas: orden, borradores, destacados
 src/lib/resume.ts           la trayectoria, como datos; alimenta el timeline de /resume
 src/styles/global.css       sistema de diseño: tokens, tipografía, prosa
 src/layouts/, src/components/, src/pages/   el sitio
-src/pages/lab/              páginas de trabajo (tipografía, acento, prosa); desechables
 src/assets/og/              fuentes TTF solo para las imágenes Open Graph
 .claude/skills/publish-post/    skill para publicar un ensayo
 scripts/new-post.mjs        crea el archivo de un ensayo con el frontmatter correcto
@@ -49,7 +48,7 @@ Solo minúsculas, dígitos y guiones. Sin fechas, sin categorías, sin acentos
 para uno en inglés, `de-puerto-natales-a-google.md` para uno en español. El
 build rechaza slugs
 inválidos y los que chocan con rutas del sitio (`about`, `now`, `resume`,
-`writing`, `lab`, `og`, `rss`, `default`, `index` y los nombres de las
+`writing`, `og`, `rss`, `default`, `index` y los nombres de las
 categorías). Un slug publicado no se cambia nunca.
 
 **Frontmatter.** Exactamente estos campos (definidos en `src/content.config.ts`):
@@ -279,8 +278,9 @@ canal de distribución por sí solo.
 - Sin animaciones decorativas. Sin pop-ups ni captura de correos: el
   newsletter es un enlace de texto hacia Substack, nunca un formulario
   embebido ni una caja (ver §8).
-- `/lab` es desechable: cuando haya decisión de fuente y acento, borrar la
-  carpeta y las familias "laboratorio" de `astro.config.mjs` y `package.json`.
+- Tipografía y acento están decididos: Newsreader e Inter, y el azul del
+  Seno de Última Esperanza. `/lab`, la página de trabajo donde se comparaban
+  las alternativas, ya se borró junto con sus dos familias tipográficas.
 
 ## 10. Código y commits
 
