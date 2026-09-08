@@ -60,7 +60,7 @@ title: 'Título del ensayo'            # obligatorio, ≤ 120 caracteres
 description: 'Una o dos frases.'      # obligatorio, ≤ 220; va a LinkedIn, Google y RSS
 date: 2026-10-13                      # obligatorio, YYYY-MM-DD
 updated: 2026-11-02                   # opcional, solo tras una revisión sustancial
-category: notes                       # obligatorio: engineering | enterprise | notes
+category: thoughts                    # obligatorio: engineering | enterprise | thoughts
 featured: false                       # true = sale en la portada; el índice no lo distingue
 draft: true                           # true = visible en dev, ausente en producción
 lang: en                              # en | es; por defecto en
@@ -159,13 +159,13 @@ mixta; las categorías permiten servir a ambas sin diluir el sitio.
 | --- | --- | --- |
 | `engineering` | Ingenieros a los que quiere influenciar. | Cómo se construyen de verdad los sistemas. Decisiones bajo restricciones, con detalle técnico y diagramas. Normalmente inglés. |
 | `enterprise` | Líderes y decisores del enterprise tradicional (nivel CIO). | Estrategia y adopción de IA. Sin jerga innecesaria; el criterio, no la implementación. Normalmente inglés. |
-| `notes` | Amigos, familia y quien quiera leer. | Escritura personal genuina: vida y aprendizajes fuera de lo técnico. Nunca consejos de carrera genéricos. Material propio: Patagonia / Puerto Natales, Atlanta. Español cuando el texto va a ese círculo. |
+| `thoughts` | Amigos, familia y quien quiera leer. | Escritura personal genuina: vida y aprendizajes fuera de lo técnico. Nunca consejos de carrera genéricos. Material propio: Patagonia / Puerto Natales, Atlanta. Español cuando el texto va a ese círculo. |
 
 El id de la categoría es la URL del índice (`/writing/engineering`). No forma
 parte de la URL de un post.
 
 Distribución (para el copy de cierre y las llamadas a la acción): Ingeniería
-y Enterprise se comparten en LinkedIn y X; Notas en Facebook e Instagram.
+y Enterprise se comparten en LinkedIn y X; Thoughts en Facebook e Instagram.
 Esas dos redes NO se enlazan desde el sitio.
 
 ## 6. Guardarraíles de divulgación (aplican a TODO lo que se publique)

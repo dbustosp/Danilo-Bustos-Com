@@ -11,4 +11,4 @@ His role changed along the way, from individual contributor to leading and scali
 
 In October 2026 he joins Google Cloud AI as a Staff Forward Deployed Engineer, building and deploying artificial intelligence inside the largest enterprises in the world.
 
-He writes here about how these systems actually get built, about artificial intelligence adoption in the enterprise, and — under Notes — about life outside the technical work. He is from Puerto Natales, in Chilean Patagonia, and lives in Atlanta.
+He writes here about how these systems actually get built, about artificial intelligence adoption in the enterprise, and — under Thoughts — about life outside the technical work. He is from Puerto Natales, in Chilean Patagonia, and lives in Atlanta.

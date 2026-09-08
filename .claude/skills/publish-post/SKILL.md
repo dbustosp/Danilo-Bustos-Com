@@ -16,9 +16,9 @@ Pregunta (o deduce del contexto) exactamente esto:
 - **Título.** Tiene que hacer todo el trabajo: no hay imágenes en el índice.
 - **Descripción.** Una o dos frases (≤ 220 caracteres). Es lo que se ve en
   LinkedIn, Google y RSS.
-- **Categoría.** `engineering` | `enterprise` | `notes`. Una sola.
+- **Categoría.** `engineering` | `enterprise` | `thoughts`. Una sola.
 - **Idioma.** `en` (por defecto) o `es`. Un ensayo se escribe en un solo
-  idioma; no hay traducciones. Si la categoría es `notes`, **pregúntalo
+  idioma; no hay traducciones. Si la categoría es `thoughts`, **pregúntalo
   siempre**: ahí conviven el texto profesional (inglés) y el que va a amigos
   y familia (español), y el defecto acierta solo la mitad de las veces.
 - **Fecha.** La de publicación prevista; formato `YYYY-MM-DD`.
@@ -35,7 +35,7 @@ Pregunta (o deduce del contexto) exactamente esto:
 ## 2. Crear el archivo
 
 ```sh
-node scripts/new-post.mjs "Título del ensayo" --category notes [--lang es] [--date 2026-10-13] [--featured] [--origin URL]
+node scripts/new-post.mjs "Título del ensayo" --category thoughts [--lang es] [--date 2026-10-13] [--featured] [--origin URL]
 ```
 
 El script deriva el slug (minúsculas, sin acentos, guiones), comprueba que no

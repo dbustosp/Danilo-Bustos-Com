@@ -2,7 +2,7 @@
 title: 'Ten years @ Equifax, Why?'
 description: 'Why did I stay at the same company for ten years? Leadership that fit, meaningful work, and the opportunities to grow.'
 date: 2025-08-31
-category: notes
+category: thoughts
 featured: true
 draft: false
 lang: en

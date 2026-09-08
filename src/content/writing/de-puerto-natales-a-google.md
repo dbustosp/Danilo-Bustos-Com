@@ -2,7 +2,7 @@
 title: 'De Puerto Natales a Google'
 description: 'El post de lanzamiento del sitio: lo que conecta un pueblo al sur del mundo con una carrera en inteligencia artificial.'
 date: 2026-10-13
-category: notes
+category: thoughts
 featured: true
 draft: true
 lang: es

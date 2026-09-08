@@ -17,8 +17,8 @@ export const CATEGORIES = {
     description: 'Artificial intelligence strategy and adoption inside the traditional enterprise.',
     audience: 'Enterprise leaders and decision makers.',
   },
-  notes: {
-    label: 'Notes',
+  thoughts: {
+    label: 'Thoughts',
     description: 'Personal writing: life and lessons outside the technical work.',
     audience: 'Friends, family, and anyone who wants to read.',
   },

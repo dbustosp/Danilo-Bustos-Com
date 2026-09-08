@@ -2,7 +2,7 @@
 /**
  * Crea el archivo de un ensayo con el frontmatter correcto.
  *
- *   node scripts/new-post.mjs "Título" --category notes [--lang en] [--date YYYY-MM-DD] [--featured] [--origin URL] [--mdx]
+ *   node scripts/new-post.mjs "Título" --category thoughts [--lang en] [--date YYYY-MM-DD] [--featured] [--origin URL] [--mdx]
  *
  * El slug se deriva del título (minúsculas, sin acentos, guiones) y se
  * comprueba contra las rutas reservadas y los archivos existentes. El
@@ -11,7 +11,7 @@
 import { existsSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
-const CATEGORIES = ['engineering', 'enterprise', 'notes'];
+const CATEGORIES = ['engineering', 'enterprise', 'thoughts'];
 const RESERVED = new Set([...CATEGORIES, 'about', 'cv', 'default', 'index', 'lab', 'now', 'og', 'rss', 'writing']);
 
 const args = process.argv.slice(2);
@@ -22,7 +22,7 @@ const flag = (name) => {
 };
 
 if (!title || !flag('category')) {
-  console.error('Uso: node scripts/new-post.mjs "Título" --category <engineering|enterprise|notes> [--lang en] [--date YYYY-MM-DD] [--featured] [--origin URL] [--mdx]');
+  console.error('Uso: node scripts/new-post.mjs "Título" --category <engineering|enterprise|thoughts> [--lang en] [--date YYYY-MM-DD] [--featured] [--origin URL] [--mdx]');
   process.exit(1);
 }
 
