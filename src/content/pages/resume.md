@@ -1,6 +1,6 @@
 ---
 title: 'Resume'
-description: 'Danilo Bustos, fifteen years across information retrieval, artificial intelligence, and distributed systems for the enterprise.'
+description: 'Danilo Bustos, over a decade across information retrieval, artificial intelligence, and distributed systems for the enterprise.'
 updated: 2026-09-06
 ---
 
@@ -10,4 +10,4 @@ updated: 2026-09-06
   y esta página solo aporta el párrafo de entrada.
 -->
 
-Fifteen years at the intersection of information retrieval, artificial intelligence, and distributed systems, building tools and analytics platforms at large scale for the enterprise.
+Over a decade at the intersection of information retrieval, artificial intelligence, and distributed systems, building tools and analytics platforms at large scale for the enterprise.
